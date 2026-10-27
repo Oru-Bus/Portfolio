@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio personnel - Découvrez mes projets, expériences et compétences">
+    <title>Mon Portfolio | Accueil</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/global.css">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .hero h1 {
+            background: none;
+            -webkit-text-fill-color: white;
+            color: white;
+        }
+        .hero .subtitle { color: rgba(255, 255, 255, 0.9); }
+        .hero .description { color: rgba(255, 255, 255, 0.85); }
+        .section { background: white; }
+        .section:nth-child(even) { background: #f8f9fa; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        .stat-item {
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .stat-item:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); }
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem; }
+        .stat-label { color: #666; font-size: 1rem; }
+        @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .stats-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Mon Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#experiences">Expériences</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content animate-fadeInUp">
+                <img src="images/profile.jpg" alt="Ma photo" class="profile-img">
+                <h1>Jean Dupont</h1>
+                <p class="subtitle">Ingénieur & Développeur Full Stack</p>
+                <p class="description">
+                    Passionné par la technologie et l'innovation, je crée des solutions digitales
+                    qui allient performance, sécurité et design moderne.
+                </p>
+                <a href="#contact" class="btn btn-outline">Me contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title animate-fadeInUp">À propos de moi</h2>
+            <div class="grid-2">
+                <div class="animate-fadeInUp delay-1">
+                    <h3>Ma passion</h3>
+                    <p>
+                        Depuis toujours, je suis fasciné par la manière dont la technologie peut
+                        résoudre des problèmes complexes et améliorer notre quotidien.
+                        Mon parcours m'a permis d'acquérir des compétences variées en
+                        développement, cybersécurité et gestion de projets.
+                    </p>
+                    <p>
+                        Je crois en l'apprentissage continu et je m'efforce de rester à jour
+                        avec les dernières technologies et tendances du secteur.
+                    </p>
+                </div>
+                <div class="animate-fadeInUp delay-2">
+                    <h3>Mes valeurs</h3>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--secondary);">►</span>
+                            Qualité et excellence technique
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--secondary);">►</span>
+                            Collaboration et travail d'équipe
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--secondary);">►</span>
+                            Innovation et créativité
+                        </li>
+                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--secondary);">►</span>
+                            Intégrité et éthique professionnelle
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="stats-grid animate-fadeInUp delay-3">
+                <div class="stat-item">
+                    <div class="stat-number">6+</div>
+                    <div class="stat-label">Projets réalisés</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3+</div>
+                    <div class="stat-label">Années d'expérience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Technologies maîtrisées</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Certifications</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Mes derniers projets</h2>
+            <p class="section-subtitle">
+                Voici une sélection de mes projets récents qui illustrent mes compétences
+                et ma passion pour la création de solutions innovantes.
+            </p>
+            
+            <div class="grid-3">
+                <div class="card animate-fadeInUp">
+                    <img src="images/project-ctf.jpg" alt="CTF Security Challenge" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">CTF Security Challenge</h3>
+                        <p class="card-text">Participation à un concours de cybersécurité avec résolution de défis variés en cryptographie, web et réseau.</p>
+                        <div class="card-tags">
+                            <span class="tag">CTF</span>
+                            <span class="tag">Cybersécurité</span>
+                            <span class="tag">Python</span>
+                        </div>
+                        <a href="projects/ctf-challenge.html" class="btn btn-outline mt-2">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <div class="card animate-fadeInUp delay-1">
+                    <img src="images/project-gestionpro.jpg" alt="GestionPro" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">GestionPro</h3>
+                        <p class="card-text">Application bureautique complète pour la gestion des clients et la facturation pour les PME.</p>
+                        <div class="card-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                        </div>
+                        <a href="projects/gestionpro.html" class="btn btn-outline mt-2">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <div class="card animate-fadeInUp delay-2">
+                    <img src="images/project-esp32.jpg" alt="ESP32 Home Automation" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">ESP32 Home Automation</h3>
+                        <p class="card-text">Système domotique intelligent basé sur ESP32 avec contrôle à distance via application mobile.</p>
+                        <div class="card-tags">
+                            <span class="tag">ESP32</span>
+                            <span class="tag">IoT</span>
+                            <span class="tag">Arduino</span>
+                        </div>
+                        <a href="projects/esp32-automation.html" class="btn btn-outline mt-2">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-3">
+                <a href="projects.html" class="btn">Voir tous les projets</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiences" class="section">
+        <div class="container">
+            <h2 class="section-title">Mes expériences</h2>
+            <p class="section-subtitle">
+                Mon parcours professionnel m'a permis d'acquérir une expérience variée
+                dans différents domaines de la technologie.
+            </p>
+            
+            <div class="grid-3">
+                <div class="card animate-fadeInUp">
+                    <img src="images/experience-securetech.jpg" alt="SecureTech Solutions" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Ingénieur Cybersécurité</h3>
+                        <p class="card-text"><strong>SecureTech Solutions</strong></p>
+                        <p class="card-text">Analyse des vulnérabilités, tests d'intrusion et formation des équipes aux bonnes pratiques.</p>
+                        <p class="card-text"><small>2022 - 2024</small></p>
+                        <a href="experiences/experience-securetech.html" class="btn btn-outline mt-2">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <div class="card animate-fadeInUp delay-1">
+                    <img src="images/experience-techinnov.jpg" alt="TechInnov" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Développeur Full Stack</h3>
+                        <p class="card-text"><strong>TechInnov</strong></p>
+                        <p class="card-text">Développement d'applications web complètes, de la conception à la mise en production.</p>
+                        <p class="card-text"><small>2021 - 2022</small></p>
+                        <a href="experiences/experience-techinnov.html" class="btn btn-outline mt-2">En savoir plus</a>
+                    </div>
+                </div>
+                
+                <div class="card animate-fadeInUp delay-2">
+                    <img src="images/experience-electrosystems.jpg" alt="ElectroSystems" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Stagiaire en Électronique</h3>
+                        <p class="card-text"><strong>ElectroSystems</strong></p>
+                        <p class="card-text">Conception et développement de systèmes embarqués pour applications industrielles.</p>
+                        <p class="card-text"><small>2020</small></p>
+                        <a href="experiences/experience-electrosystems.html" class="btn btn-outline mt-2">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-3">
+                <a href="experiences.html" class="btn">Voir toutes les expériences</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Me contacter</h2>
+            <p class="section-subtitle">
+                Vous avez un projet ou une question ? N'hésitez pas à me contacter !
+            </p>
+            
+            <div style="max-width: 700px; margin: 0 auto;" class="animate-fadeInUp">
+                <h3>Envoyez-moi un message</h3>
+                <form id="contact-form" class="mt-2">
+                    <div class="form-group">
+                        <label for="name">Nom</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Votre email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Sujet</label>
+                        <input type="text" id="subject" name="subject" class="form-control" placeholder="Sujet du message" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" class="form-control textarea-control" placeholder="Votre message..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Mon Portfolio</div>
+                <div class="footer-links">
+                    <a href="#home">Accueil</a>
+                    <a href="#about">À propos</a>
+                    <a href="#projects">Projets</a>
+                    <a href="#experiences">Expériences</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Mon Portfolio. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" onclick="scrollToTop()" style="display: none; position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background: var(--secondary); color: white; border: none; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s ease; z-index: 1000;">
+        ↑
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

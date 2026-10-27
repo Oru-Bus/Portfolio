@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tous mes projets - Découvrez l'ensemble de mes réalisations">
+    <title>Mes Projets | Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/global.css">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 0 4rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .page-header p { font-size: 1.2rem; opacity: 0.9; }
+        .filter-sort-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .sort-container { display: flex; align-items: center; gap: 1rem; }
+        .sort-container label { font-weight: 600; color: var(--primary); }
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2.2rem; }
+            .page-header p { font-size: 1rem; }
+            .filter-sort-container { flex-direction: column; align-items: flex-start; }
+            .sort-container { width: 100%; justify-content: space-between; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Mon Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="projects.html">Projets</a></li>
+                <li><a href="experiences.html">Expériences</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Mes Projets</h1>
+            <p>Découvrez l'ensemble de mes réalisations, classées par catégorie et date</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="filter-sort-container">
+            <div id="filter-bar" class="filter-bar"></div>
+            <div class="sort-container">
+                <label for="sort-select">Trier par:</label>
+                <select id="sort-select" class="sort-select"></select>
+            </div>
+        </div>
+        
+        <div id="projects-container" class="grid-3"></div>
+        
+        <noscript>
+            <div class="grid-3">
+                <div class="card">
+                    <img src="images/project-ctf.jpg" alt="CTF Security Challenge" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">CTF Security Challenge</h3>
+                        <p class="card-text">Participation à un concours de cybersécurité</p>
+                        <div class="card-tags">
+                            <span class="tag">CTF</span>
+                            <span class="tag">Cybersécurité</span>
+                            <span class="tag">Python</span>
+                        </div>
+                        <a href="projects/ctf-challenge.html" class="btn btn-outline mt-2">En savoir plus</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/project-gestionpro.jpg" alt="GestionPro" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">GestionPro</h3>
+                        <p class="card-text">Application bureautique complète</p>
+                        <div class="card-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                        </div>
+                        <a href="projects/gestionpro.html" class="btn btn-outline mt-2">En savoir plus</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/project-esp32.jpg" alt="ESP32 Home Automation" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">ESP32 Home Automation</h3>
+                        <p class="card-text">Système domotique intelligent</p>
+                        <div class="card-tags">
+                            <span class="tag">ESP32</span>
+                            <span class="tag">IoT</span>
+                        </div>
+                        <a href="projects/esp32-automation.html" class="btn btn-outline mt-2">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </noscript>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Mon Portfolio</div>
+                <div class="footer-links">
+                    <a href="index.html">Accueil</a>
+                    <a href="projects.html">Projets</a>
+                    <a href="experiences.html">Expériences</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Mon Portfolio. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" onclick="scrollToTop()" style="display: none; position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background: var(--secondary); color: white; border: none; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s ease; z-index: 1000;">
+        ↑
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

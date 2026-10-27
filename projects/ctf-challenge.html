@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF Security Challenge | Portfolio</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #00d4ff;
+            --accent: #ff0055;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --glow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: var(--darker);
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 10% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(ellipse at 90% 80%, rgba(255, 0, 85, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .navbar { background: rgba(10, 10, 10, 0.95); border-bottom: 1px solid rgba(0, 255, 136, 0.3); }
+        .nav-links a { color: #e0e0e0; }
+        .nav-links a:hover { color: var(--primary); }
+        .logo { color: var(--primary); font-family: 'Orbitron', sans-serif; text-shadow: var(--glow); }
+        .hamburger span { background: var(--primary); }
+        .project-info { background: rgba(15, 15, 15, 0.9); border: 1px solid rgba(0, 255, 136, 0.2); }
+        .project-info::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--primary), var(--secondary)); border-radius: 0 4px 4px 0; }
+        .section-title { color: var(--primary); font-family: 'Orbitron', sans-serif; text-shadow: var(--glow); border-bottom: 1px solid rgba(0, 255, 136, 0.3); }
+        .tag { background: rgba(0, 255, 136, 0.1); border: 1px solid var(--primary); color: var(--primary); }
+        .tag:hover { background: var(--primary); color: var(--darker); box-shadow: var(--glow); }
+        .footer { background: var(--darker); border-top: 1px solid rgba(0, 255, 136, 0.2); }
+        .social-icon { background: rgba(0, 255, 136, 0.1); border: 1px solid var(--primary); }
+        .project-hero-img { filter: sepia(100%) hue-rotate(180deg) saturate(200%); }
+        .gallery-item img { filter: sepia(100%) hue-rotate(180deg) saturate(150%); }
+        .gallery-item:hover img { filter: sepia(100%) hue-rotate(180deg) saturate(200%) brightness(1.2); }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><i class="fas fa-shield-alt"></i> CTF CHALLENGE</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../projects.html">Projets</a></li>
+                <li><a href="../experiences.html">Expériences</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="page-header" style="padding: 4rem 0; text-align: center;">
+        <div class="container">
+            <h1 style="font-family: 'Orbitron'; color: var(--primary); text-shadow: var(--glow);"><i class="fas fa-trophy"></i> CTF SECURITY CHALLENGE</h1>
+            <p style="color: var(--secondary); font-size: 1.2rem;">Concours de cybersécurité - Résolution de défis avancés</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="project-detail">
+            <div class="project-hero" style="position: relative; margin-bottom: 3rem; border: 2px solid rgba(0, 255, 136, 0.3); border-radius: 10px; overflow: hidden;">
+                <img src="../images/project-ctf.jpg" alt="CTF Challenge" class="project-hero-img" style="width: 100%; height: 400px; object-fit: cover;">
+                <div class="hero-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent, rgba(10, 10, 10, 0.8)); display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem;">
+                    <h2 style="font-family: 'Orbitron'; font-size: 2rem; color: var(--primary); text-shadow: var(--glow);"><i class="fas fa-lock"></i> DEFIS DE SECURITE</h2>
+                    <p style="color: var(--secondary);">Cryptographie | Web | Réseau | Forensique</p>
+                </div>
+            </div>
+
+            <div class="project-info">
+                <div class="project-meta" style="display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                    <div class="meta-item"><i class="fas fa-calendar-alt"></i><span><strong>Date:</strong> Mars 2024</span></div>
+                    <div class="meta-item"><i class="fas fa-folder"></i><span><strong>Catégorie:</strong> Cybersécurité</span></div>
+                    <div class="meta-item"><i class="fas fa-clock"></i><span><strong>Durée:</strong> 48 heures</span></div>
+                    <div class="meta-item"><i class="fas fa-users"></i><span><strong>Équipe:</strong> 4 membres</span></div>
+                </div>
+
+                <div style="display: inline-block; padding: 0.5rem 1.2rem; border-radius: 25px; background: rgba(0, 255, 136, 0.2); border: 1px solid var(--primary); color: var(--primary); font-weight: 600; margin: 1rem 0;">
+                    <i class="fas fa-check-circle"></i> PROJET TERMINÉ
+                </div>
+                <p style="color: #aaa; font-style: italic; margin-top: 0.5rem;">Le concours s'est terminé avec succès. Notre équipe a remporté la 2ème place parmi 50 participants.</p>
+
+                <div style="line-height: 2; color: #ccc; margin: 2rem 0;">
+                    <h3 style="color: var(--primary); font-family: 'Orbitron'; margin: 1.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(0, 255, 136, 0.2);"><i class="fas fa-info-circle"></i> PRÉSENTATION DU PROJET</h3>
+                    <p>Participation à un <strong>Capture The Flag (CTF)</strong> national organisé par une association de cybersécurité. Ce concours de 48 heures a mis à l'épreuve nos compétences dans divers domaines de la sécurité informatique.</p>
+
+                    <h3 style="color: var(--primary); font-family: 'Orbitron'; margin: 1.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(0, 255, 136, 0.2);"><i class="fas fa-tools"></i> OUTILS UTILISÉS</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li><strong>Analyse réseau:</strong> Wireshark, tcpdump, Nmap</li>
+                        <li><strong>Cryptographie:</strong> CyberChef, RSATool, Python (PyCryptodome)</li>
+                        <li><strong>Web Exploitation:</strong> Burp Suite, SQLMap, OWASP ZAP</li>
+                        <li><strong>Forensique:</strong> Autopsy, Volatility, binwalk</li>
+                        <li><strong>Scripting:</strong> Python, Bash, PowerShell</li>
+                    </ul>
+
+                    <h3 style="color: var(--primary); font-family: 'Orbitron'; margin: 1.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(0, 255, 136, 0.2);"><i class="fas fa-brain"></i> COMPÉTENCES ACQUISES</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Maîtrise avancée des techniques de <strong>pentesting</strong></li>
+                        <li>Résolution de défis de <strong>cryptographie moderne</strong></li>
+                        <li>Exploitation de vulnérabilités <strong>web</strong></li>
+                        <li>Analyse <strong>forensique</strong> de fichiers et mémoire</li>
+                        <li>Travail en équipe sous <strong>pression temporelle</strong></li>
+                    </ul>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <p style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; font-family: 'Orbitron';"><i class="fas fa-tags"></i> ÉTIQUETTES</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                        <span class="tag">CTF</span><span class="tag">Cybersécurité</span><span class="tag">Pentest</span><span class="tag">Cryptographie</span>
+                        <span class="tag">Réseau</span><span class="tag">Forensique</span><span class="tag">Python</span><span class="tag">Wireshark</span>
+                        <span class="tag">Burp Suite</span><span class="tag">SQLMap</span><span class="tag">Ghidra</span><span class="tag">Teamwork</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 3rem 0;">
+                <h2 style="color: var(--primary); font-family: 'Orbitron'; text-shadow: var(--glow); margin-bottom: 2rem; text-align: center;"><i class="fas fa-images"></i> GALERIE</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <div style="position: relative; overflow: hidden; border-radius: 8px; border: 1px solid rgba(0, 255, 136, 0.2); aspect-ratio: 16/9;">
+                        <img src="../images/ctf-1.jpg" alt="Équipe en compétition" style="width: 100%; height: 100%; object-fit: cover; filter: sepia(100%) hue-rotate(180deg) saturate(150%);">
+                    </div>
+                    <div style="position: relative; overflow: hidden; border-radius: 8px; border: 1px solid rgba(0, 255, 136, 0.2); aspect-ratio: 16/9;">
+                        <img src="../images/ctf-2.jpg" alt="Tableau des scores" style="width: 100%; height: 100%; object-fit: cover; filter: sepia(100%) hue-rotate(180deg) saturate(150%);">
+                    </div>
+                    <div style="position: relative; overflow: hidden; border-radius: 8px; border: 1px solid rgba(0, 255, 136, 0.2); aspect-ratio: 16/9;">
+                        <img src="../images/ctf-3.jpg" alt="Résolution de défi" style="width: 100%; height: 100%; object-fit: cover; filter: sepia(100%) hue-rotate(180deg) saturate(150%);">
+                    </div>
+                    <div style="position: relative; overflow: hidden; border-radius: 8px; border: 1px solid rgba(0, 255, 136, 0.2); aspect-ratio: 16/9;">
+                        <img src="../images/ctf-4.jpg" alt="Cérémonie de remise" style="width: 100%; height: 100%; object-fit: cover; filter: sepia(100%) hue-rotate(180deg) saturate(150%);">
+                    </div>
+                    <div style="position: relative; overflow: hidden; border-radius: 8px; border: 1px solid rgba(0, 255, 136, 0.2); aspect-ratio: 16/9;">
+                        <img src="../images/ctf-5.jpg" alt="Trophée" style="width: 100%; height: 100%; object-fit: cover; filter: sepia(100%) hue-rotate(180deg) saturate(150%);">
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 2rem 0; text-align: center;">
+                <a href="../projects.html" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: transparent; border: 1px solid var(--primary); color: var(--primary); border-radius: 5px; text-decoration: none; font-family: 'Share Tech Mono'; transition: all 0.3s ease;">
+                    <i class="fas fa-arrow-left"></i> RETOUR AUX PROJETS
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo" style="color: var(--primary);"><i class="fas fa-shield-alt"></i> MON PORTFOLIO</div>
+                <div class="footer-links">
+                    <a href="../index.html">Accueil</a>
+                    <a href="../projects.html">Projets</a>
+                    <a href="../experiences.html">Expériences</a>
+                    <a href="../index.html#contact">Contact</a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin-in" style="font-size: 1.2rem; color: var(--primary);"></i></a>
+                    <a href="https://github.com" target="_blank" class="social-icon"><i class="fab fa-github" style="font-size: 1.2rem; color: var(--primary);"></i></a>
+                </div>
+            </div>
+            <div class="copyright"><p>&copy; 2024 Mon Portfolio. Tous droits réservés.</p></div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+</body>
+</html>

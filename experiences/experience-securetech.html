@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureTech Solutions | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #00d4ff;
+            --accent: #ff0055;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --glow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: var(--darker);
+            color: #e0e0e0;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 10% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(ellipse at 90% 80%, rgba(255, 0, 85, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 255, 136, 0.03) 51%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 1000;
+            animation: scan 10s linear infinite;
+        }
+        @keyframes scan { 0% { background-position: 0 0; } 100% { background-position: 0 100%; } }
+        .navbar { background: rgba(10, 10, 10, 0.95); border-bottom: 1px solid rgba(0, 255, 136, 0.3); }
+        .navbar.scrolled { background: rgba(10, 10, 10, 0.98); }
+        .nav-links a { color: #e0e0e0; }
+        .nav-links a:hover { color: var(--primary); }
+        .logo { color: var(--primary); font-family: 'Orbitron', sans-serif; text-shadow: var(--glow); }
+        .hamburger span { background: var(--primary); }
+        .experience-info { background: rgba(15, 15, 15, 0.9); border: 1px solid rgba(0, 255, 136, 0.2); }
+        .experience-info::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--primary), var(--secondary)); border-radius: 0 4px 4px 0; }
+        .section-title { color: var(--primary); font-family: 'Orbitron', sans-serif; text-shadow: var(--glow); border-bottom: 1px solid rgba(0, 255, 136, 0.3); }
+        .responsibility-item { background: rgba(20, 20, 20, 0.8); border-left: 3px solid var(--primary); padding: 1rem 1.5rem; margin-bottom: 1rem; border-radius: 0 5px 5px 0; }
+        .responsibility-item:hover { background: rgba(0, 255, 136, 0.05); border-left-color: var(--secondary); }
+        .responsibility-title { font-family: 'Orbitron', sans-serif; color: var(--primary); margin-bottom: 0.5rem; }
+        .gain-card { background: rgba(20, 20, 20, 0.8); border: 1px solid rgba(0, 255, 136, 0.2); border-radius: 8px; padding: 1.5rem; }
+        .gain-card:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: var(--glow); }
+        .gain-icon { width: 50px; height: 50px; background: rgba(0, 255, 136, 0.1); border: 1px solid var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 1.5rem; color: var(--primary); }
+        .gain-title { font-family: 'Orbitron', sans-serif; color: var(--primary); margin-bottom: 0.5rem; }
+        .footer { background: var(--darker); border-top: 1px solid rgba(0, 255, 136, 0.2); }
+        .social-icon { background: rgba(0, 255, 136, 0.1); border: 1px solid var(--primary); }
+        .social-icon i { color: var(--primary); }
+        .social-icon:hover i { color: var(--darker); }
+        .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: transparent; border: 1px solid var(--primary); color: var(--primary); border-radius: 5px; text-decoration: none; font-family: 'Share Tech Mono', monospace; }
+        .back-btn:hover { background: var(--primary); color: var(--darker); box-shadow: var(--glow); }
+        @media (max-width: 768px) { .gains-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><i class="fas fa-shield-alt"></i> SECURETECH</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../projects.html">Projets</a></li>
+                <li><a href="../experiences.html">Expériences</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="page-header" style="text-align: center; margin-bottom: 3rem; padding: 4rem 0; position: relative;">
+        <div class="container">
+            <h1 style="font-family: 'Orbitron'; color: var(--primary); text-shadow: var(--glow); font-size: 2.5rem;"><i class="fas fa-user-secret"></i> INGÉNIEUR CYBERSÉCURITÉ</h1>
+            <p style="color: var(--secondary); font-size: 1.2rem;">SecureTech Solutions - 2022-2024</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="experience-detail">
+            <div class="experience-hero" style="position: relative; margin-bottom: 3rem; border: 2px solid rgba(0, 255, 136, 0.3); border-radius: 10px; overflow: hidden; background: linear-gradient(135deg, rgba(0, 255, 136, 0.05), rgba(0, 212, 255, 0.05));">
+                <img src="../images/experience-securetech.jpg" alt="SecureTech Solutions" class="experience-hero-img" style="width: 100%; height: 400px; object-fit: cover; filter: sepia(100%) hue-rotate(180deg) saturate(200%);">
+                <div class="hero-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, transparent, rgba(10, 10, 10, 0.8)); display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem;">
+                    <h2 style="font-family: 'Orbitron'; font-size: 2rem; color: var(--primary); text-shadow: var(--glow);"><i class="fas fa-building"></i> SECURETECH SOLUTIONS</h2>
+                    <p style="color: var(--secondary);">Expertise en sécurité informatique et protection des données</p>
+                </div>
+            </div>
+
+            <div class="experience-info">
+                <div style="display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #aaa; font-size: 0.9rem;"><i class="fas fa-calendar-alt" style="color: var(--primary);"></i><span><strong>Période:</strong> Juin 2022 - Mai 2024</span></div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #aaa; font-size: 0.9rem;"><i class="fas fa-briefcase" style="color: var(--primary);"></i><span><strong>Poste:</strong> Ingénieur Cybersécurité</span></div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #aaa; font-size: 0.9rem;"><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i><span><strong>Localisation:</strong> Paris, France</span></div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #aaa; font-size: 0.9rem;"><i class="fas fa-users" style="color: var(--primary);"></i><span><strong>Taille équipe:</strong> 15 personnes</span></div>
+                </div>
+
+                <div style="line-height: 2; color: #ccc; margin-bottom: 2rem;">
+                    <p><strong>SecureTech Solutions</strong> est une entreprise spécialisée dans la cybersécurité, offrant des services de test d'intrusion, d'audit de sécurité et de formation aux bonnes pratiques pour les entreprises de toutes tailles.</p>
+                    <p>En tant qu'<strong>Ingénieur Cybersécurité</strong>, j'ai eu l'opportunité de travailler sur des projets variés et stimulants, allant de l'analyse des vulnérabilités des applications web à la mise en place de solutions de sécurité avancées.</p>
+                </div>
+
+                <div class="responsibilities">
+                    <h3 class="section-title"><i class="fas fa-tasks"></i> RESPONSABILITÉS PRINCIPALES</h3>
+                    <div class="responsibility-item">
+                        <div class="responsibility-title">Analyse des vulnérabilités</div>
+                        <div style="color: #aaa; font-size: 0.95rem;">Réalisation de tests d'intrusion (pentests) sur les applications web, les réseaux et les infrastructures pour identifier et exploiter les vulnérabilités.</div>
+                    </div>
+                    <div class="responsibility-item">
+                        <div class="responsibility-title">Tests d'intrusion</div>
+                        <div style="color: #aaa; font-size: 0.95rem;">Exécution de tests d'intrusion complets (black box, grey box, white box) selon les méthodologies standard (OWASP, NIST, PTES).</div>
+                    </div>
+                    <div class="responsibility-item">
+                        <div class="responsibility-title">Formation et sensibilisation</div>
+                        <div style="color: #aaa; font-size: 0.95rem;">Organisation et animation de sessions de formation pour sensibiliser les employés aux bonnes pratiques de sécurité.</div>
+                    </div>
+                    <div class="responsibility-item">
+                        <div class="responsibility-title">Gestion des incidents</div>
+                        <div style="color: #aaa; font-size: 0.95rem;">Participation à la gestion des incidents de sécurité, y compris la détection, l'analyse, la réponse et la récupération.</div>
+                    </div>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h3 class="section-title"><i class="fas fa-trophy"></i> COMPÉTENCES & ACQUIS</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div class="gain-card">
+                            <div class="gain-icon"><i class="fas fa-search"></i></div>
+                            <h4 class="gain-title">Expertise en Pentest</h4>
+                            <p style="color: #aaa; font-size: 0.9rem;">Maîtrise complète des techniques de test d'intrusion sur divers types de systèmes.</p>
+                        </div>
+                        <div class="gain-card">
+                            <div class="gain-icon"><i class="fas fa-shield-alt"></i></div>
+                            <h4 class="gain-title">Gestion des Incidents</h4>
+                            <p style="color: #aaa; font-size: 0.9rem;">Capacité à détecter, analyser et répondre efficacement aux incidents de sécurité.</p>
+                        </div>
+                        <div class="gain-card">
+                            <div class="gain-icon"><i class="fas fa-certificate"></i></div>
+                            <h4 class="gain-title">Certification CEH</h4>
+                            <p style="color: #aaa; font-size: 0.9rem;">Obtention de la certification Certified Ethical Hacker (CEH), reconnue mondialement.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="line-height: 1.8; color: #ccc; margin: 2rem 0;">
+                    <h3 class="section-title"><i class="fas fa-lightbulb"></i> RÉALISATIONS NOTABLES</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Découverte de <strong>15 vulnérabilités critiques</strong> lors d'un audit pour un client du CAC 40</li>
+                        <li>Développement d'un <strong>outil d'analyse automatique</strong> qui a réduit le temps d'audit de 30%</li>
+                        <li>Formation de <strong>plus de 500 employés</strong> aux bonnes pratiques de sécurité</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin: 2rem 0; text-align: center;">
+                <a href="../experiences.html" class="back-btn"><i class="fas fa-arrow-left"></i> RETOUR AUX EXPÉRIENCES</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo" style="color: var(--primary);"><i class="fas fa-shield-alt"></i> MON PORTFOLIO</div>
+                <div class="footer-links">
+                    <a href="../index.html">Accueil</a>
+                    <a href="../projects.html">Projets</a>
+                    <a href="../experiences.html">Expériences</a>
+                    <a href="../index.html#contact">Contact</a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin-in" style="font-size: 1.2rem;"></i></a>
+                    <a href="https://github.com" target="_blank" class="social-icon"><i class="fab fa-github" style="font-size: 1.2rem;"></i></a>
+                </div>
+            </div>
+            <div class="copyright"><p>&copy; 2024 Mon Portfolio. Tous droits réservés.</p></div>
+        </div>
+    </footer>
+    <button id="back-to-top" onclick="scrollToTop()" style="display: none; position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background: var(--primary); color: var(--darker); border: none; border-radius: 50%; cursor: pointer; box-shadow: var(--glow); transition: all 0.3s ease; z-index: 1000;"><i class="fas fa-arrow-up"></i></button>
+    <script src="../js/main.js"></script>
+</body>
+</html>

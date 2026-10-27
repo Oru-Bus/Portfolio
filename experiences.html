@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mes expériences professionnelles - Découvrez mon parcours">
+    <title>Mes Expériences | Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/global.css">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 0 4rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .page-header p { font-size: 1.2rem; opacity: 0.9; }
+        .experience-card { position: relative; overflow: hidden; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; margin-bottom: 2rem; }
+        .experience-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); }
+        .experience-img { width: 100%; height: 250px; object-fit: cover; }
+        .experience-overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem;
+        }
+        .experience-title { font-size: 1.5rem; color: white; margin-bottom: 0.5rem; }
+        .experience-company { color: rgba(255, 255, 255, 0.9); font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .experience-date { color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; }
+        .experience-content { padding: 1.5rem; }
+        .experience-description { color: #666; margin-bottom: 1rem; line-height: 1.8; }
+        .gains-title { color: var(--primary); font-weight: 600; margin-bottom: 0.5rem; }
+        .gains-list { list-style: none; padding-left: 0; }
+        .gains-list li { padding-left: 1.5rem; margin-bottom: 0.5rem; position: relative; color: #555; }
+        .gains-list li::before { content: '►'; position: absolute; left: 0; color: var(--secondary); }
+        .view-more-btn { margin-top: 1rem; }
+        .timeline { position: relative; padding-left: 3rem; margin: 2rem 0; }
+        .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: var(--secondary); }
+        .timeline-item { position: relative; padding-left: 2rem; margin-bottom: 2rem; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -25px; top: 5px; width: 15px; height: 15px;
+            border-radius: 50%; background: var(--secondary); border: 3px solid white; box-shadow: 0 0 0 3px var(--secondary);
+        }
+        .timeline-date { font-weight: 600; color: var(--primary); margin-bottom: 0.5rem; }
+        .page-header h1 { font-size: 2.2rem; }
+        .page-header p { font-size: 1rem; }
+        .timeline { padding-left: 1.5rem; }
+        .timeline::before { left: 5px; }
+        .timeline-item::before { left: -20px; }
+        .timeline-item { padding-left: 1.5rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Mon Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="projects.html">Projets</a></li>
+                <li><a href="experiences.html">Expériences</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Mes Expériences Professionnelles</h1>
+            <p>Découvrez mon parcours et les compétences acquises au fil des années</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title">Mon parcours</h2>
+            <p class="section-subtitle">
+                Chaque expérience a contribué à forger mes compétences et ma vision du développement et de la technologie.
+            </p>
+
+            <div class="grid-3">
+                <!-- Expérience 1 -->
+                <div class="card experience-card animate-fadeInUp">
+                    <img src="images/experience-securetech.jpg" alt="SecureTech Solutions" class="experience-img">
+                    <div class="experience-content">
+                        <h3 class="experience-title" style="color: var(--primary); font-size: 1.4rem;">Ingénieur Cybersécurité</h3>
+                        <p class="experience-company"><strong>SecureTech Solutions</strong></p>
+                        <p class="experience-date"><small>Juin 2022 - Mai 2024 (2 ans)</small></p>
+                        <p class="experience-description">
+                            Analyse des vulnérabilités, tests d'intrusion, formation des équipes aux bonnes pratiques de sécurité.
+                        </p>
+                        <div class="experience-gains">
+                            <p class="gains-title">Compétences acquises :</p>
+                            <ul class="gains-list">
+                                <li>Expertise en pentest</li>
+                                <li>Gestion des incidents de sécurité</li>
+                                <li>Certification CEH</li>
+                            </ul>
+                        </div>
+                        <a href="experiences/experience-securetech.html" class="btn btn-outline view-more-btn">En savoir plus</a>
+                    </div>
+                </div>
+
+                <!-- Expérience 2 -->
+                <div class="card experience-card animate-fadeInUp delay-1">
+                    <img src="images/experience-techinnov.jpg" alt="TechInnov" class="experience-img">
+                    <div class="experience-content">
+                        <h3 class="experience-title" style="color: var(--primary); font-size: 1.4rem;">Développeur Full Stack</h3>
+                        <p class="experience-company"><strong>TechInnov</strong></p>
+                        <p class="experience-date"><small>Janvier 2021 - Mai 2022 (1 an et 5 mois)</small></p>
+                        <p class="experience-description">
+                            Développement d'applications web complètes, de la conception à la mise en production.
+                        </p>
+                        <div class="experience-gains">
+                            <p class="gains-title">Compétences acquises :</p>
+                            <ul class="gains-list">
+                                <li>Maîtrise de React et Node.js</li>
+                                <li>Gestion de projets Agile</li>
+                                <li>Déploiement cloud</li>
+                            </ul>
+                        </div>
+                        <a href="experiences/experience-techinnov.html" class="btn btn-outline view-more-btn">En savoir plus</a>
+                    </div>
+                </div>
+
+                <!-- Expérience 3 -->
+                <div class="card experience-card animate-fadeInUp delay-2">
+                    <img src="images/experience-electrosystems.jpg" alt="ElectroSystems" class="experience-img">
+                    <div class="experience-content">
+                        <h3 class="experience-title" style="color: var(--primary); font-size: 1.4rem;">Stagiaire en Électronique</h3>
+                        <p class="experience-company"><strong>ElectroSystems</strong></p>
+                        <p class="experience-date"><small>Juillet 2020 - Décembre 2020 (6 mois)</small></p>
+                        <p class="experience-description">
+                            Conception et développement de systèmes embarqués pour applications industrielles.
+                        </p>
+                        <div class="experience-gains">
+                            <p class="gains-title">Compétences acquises :</p>
+                            <ul class="gains-list">
+                                <li>Programmation ESP32/Arduino</li>
+                                <li>Conception de circuits</li>
+                                <li>Prototypage rapide</li>
+                            </ul>
+                        </div>
+                        <!-- Lien rajouté pour uniformiser et permettre le clic -->
+                        <a href="experiences/experience-electrosystems.html" class="btn btn-outline view-more-btn">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline animate-fadeInUp delay-3">
+                <div class="timeline-item">
+                    <div class="timeline-date">2022 - 2024</div>
+                    <h3>Ingénieur Cybersécurité - SecureTech Solutions</h3>
+                    <p>Analyse des vulnérabilités, tests d'intrusion, formation des équipes aux bonnes pratiques de sécurité.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021 - 2022</div>
+                    <h3>Développeur Full Stack - TechInnov</h3>
+                    <p>Développement d'applications web complètes, de la conception à la mise en production.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2020</div>
+                    <h3>Stagiaire en Électronique - ElectroSystems</h3>
+                    <p>Conception et développement de systèmes embarqués pour applications industrielles.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Mon Portfolio</div>
+                <div class="footer-links">
+                    <a href="index.html">Accueil</a>
+                    <a href="projects.html">Projets</a>
+                    <a href="experiences.html">Expériences</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Mon Portfolio. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" onclick="scrollToTop()" style="display: none; position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background: var(--secondary); color: white; border: none; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s ease; z-index: 1000;">
+        ↑
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,62 +1,68 @@
 // ============================================
-// TRANSITIONS MANAGER - Gestion des transitions entre pages
+// TRANSITIONS MANAGER - Gestion des transitions fluides entre pages
 // ============================================
 
 class TransitionManager {
     constructor() {
-        this.currentTransition = null;
         this.isTransitioning = false;
-        this.categoryTransitions = {
-            // Catégories de projets
-            'Cybersécurité': 'transition-cybersecurity',
-            'Cybersecurite': 'transition-cybersecurity',
-            'Cybersécurité': 'transition-cybersecurity',
-            'Développement': 'transition-developpement',
-            'Développement': 'transition-developpement',
-            'Électronique': 'transition-electronique',
-            'Electronique': 'transition-electronique',
-            'Web Design': 'transition-webdesign',
-            'Entrepreneuriat': 'transition-entrepreneuriat',
-            
-            // Expériences
-            'SecureTech': 'transition-securetech',
-            'SecureTech Solutions': 'transition-securetech',
-            'TechInnov': 'transition-techinnov',
-            'ElectroSystems': 'transition-electrosystems',
-            'Ingénieur Cybersécurité': 'transition-securetech',
-            'Développeur Full Stack': 'transition-techinnov',
-            'Stagiaire en Électronique': 'transition-electrosystems'
-        };
-        
-        this.transitionTypes = {
-            'default': 'transition-cybersecurity',
-            'home': 'page-zoom-in',
-            'projects': 'page-slide-in-right',
-            'experiences': 'page-slide-in-left'
-        };
-        
+        this.transitionDuration = 400; // ms
         this.init();
     }
     
     init() {
         // Créer l'overlay de transition
-        this.createTransitionOverlay();
+        this.createOverlay();
         
         // Intercepter les clics sur les liens
         this.setupLinkInterception();
         
-        // Gérer le chargement initial de la page
-        this.handlePageLoad();
+        // Gérer le chargement initial
+        this.handleInitialLoad();
         
-        // Pré-charger les ressources
-        this.preloadResources();
+        // Pré-charger les pages
+        this.preloadPages();
     }
     
-    createTransitionOverlay() {
+    createOverlay() {
         this.overlay = document.createElement('div');
-        this.overlay.className = 'transition-overlay';
-        this.overlay.innerHTML = '<div class="transition-loader"></div>';
+        this.overlay.id = 'page-transition-overlay';
+        this.overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity ${this.transitionDuration}ms ease-in-out;
+        `;
+        
+        this.loader = document.createElement('div');
+        this.loader.style.cssText = `
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        `;
+        
+        this.overlay.appendChild(this.loader);
         document.body.appendChild(this.overlay);
+        
+        // Ajouter le keyframe pour le spin
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
     }
     
     setupLinkInterception() {
@@ -65,9 +71,6 @@ class TransitionManager {
             if (!link) return;
             
             const href = link.getAttribute('href');
-            const category = link.dataset.category || 
-                           link.closest('[data-category]')?.dataset.category ||
-                           this.getCategoryFromHref(href);
             
             // Ignorer les ancres, liens externes, etc.
             if (this.shouldIgnoreLink(link, href)) {
@@ -75,283 +78,95 @@ class TransitionManager {
             }
             
             e.preventDefault();
-            this.startTransition(link, href, category);
+            this.startTransition(href);
         });
     }
     
     shouldIgnoreLink(link, href) {
-        // Ignorer les liens avec target=_blank
-        if (link.target === '_blank' || link.target === '_new') {
-            return true;
-        }
-        
-        // Ignorer les ancres
-        if (!href || href.startsWith('#')) {
-            return true;
-        }
-        
-        // Ignorer les liens externes
-        if (href.startsWith('http://') || href.startsWith('https://')) {
-            return true;
-        }
-        
-        // Ignorer les liens mailto, tel, etc.
-        if (href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) {
-            return true;
-        }
-        
+        if (!href) return true;
+        if (href.startsWith('#')) return true;
+        if (href.startsWith('http')) return true;
+        if (href.startsWith('mailto:')) return true;
+        if (href.startsWith('tel:')) return true;
+        if (href.startsWith('javascript:')) return true;
+        if (link.target === '_blank' || link.target === '_new') return true;
         return false;
     }
     
-    getCategoryFromHref(href) {
-        // Extraire la catégorie à partir de l'URL
-        if (href.includes('cyber') || href.includes('ctf') || href.includes('secure')) {
-            return 'Cybersécurité';
-        }
-        if (href.includes('electronique') || href.includes('esp32') || href.includes('electro')) {
-            return 'Électronique';
-        }
-        if (href.includes('developpement') || href.includes('gestionpro')) {
-            return 'Développement';
-        }
-        if (href.includes('web-design') || href.includes('portfolio')) {
-            return 'Web Design';
-        }
-        if (href.includes('entrepreneuriat')) {
-            return 'Entrepreneuriat';
-        }
-        return null;
-    }
-    
-    startTransition(link, href, category) {
-        if (this.isTransitioning) {
-            return;
-        }
+    startTransition(href) {
+        if (this.isTransitioning) return;
         
         this.isTransitioning = true;
         
-        // Déterminer le type de transition
-        const transitionClass = this.getTransitionClass(category);
-        
-        // Appliquer la transition
-        this.applyTransition(transitionClass, () => {
-            window.location.href = href;
-        });
-    }
-    
-    getTransitionClass(category) {
-        if (category && this.categoryTransitions[category]) {
-            return this.categoryTransitions[category];
-        }
-        return this.transitionTypes['default'];
-    }
-    
-    applyTransition(transitionClass, callback) {
-        // Nettoyer les classes précédentes
-        this.overlay.className = 'transition-overlay';
-        
-        // Ajouter la classe de transition spécifique
-        this.overlay.classList.add(transitionClass);
-        
         // Activer l'overlay
-        this.overlay.classList.add('active');
+        this.overlay.style.opacity = '1';
+        this.overlay.style.pointerEvents = 'all';
         
-        // Attendre la fin de l'animation avant de naviguer
+        // Attendre que l'overlay soit visible
         setTimeout(() => {
-            this.overlay.classList.remove('active');
-            this.isTransitioning = false;
-            callback();
-        }, 1000); // Durée de la transition
-    }
-    
-    handlePageLoad() {
-        // Appliquer un effet d'apparition au chargement
-        document.body.style.opacity = '0';
-        document.body.style.transform = 'translateY(20px)';
-        document.body.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        
-        setTimeout(() => {
-            document.body.style.opacity = '1';
-            document.body.style.transform = 'translateY(0)';
-        }, 50);
-        
-        // Ajouter une classe pour indiquer que la page est chargée
-        setTimeout(() => {
-            document.body.classList.add('page-loaded');
-        }, 600);
-    }
-    
-    preloadResources() {
-        // Pré-charger les images et ressources communes
-        const images = document.querySelectorAll('img[data-src]');
-        images.forEach(img => {
-            const src = img.dataset.src;
-            if (src) {
-                const preloadImg = new Image();
-                preloadImg.src = src;
-            }
-        });
-        
-        // Pré-charger les pages liées
-        const links = document.querySelectorAll('a[href^="projects/"], a[href^="experiences/"], a[href="projects.html"], a[href="experiences.html"]');
-        links.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href && !href.startsWith('#')) {
-                // Utiliser fetch pour pré-charger les pages
-                fetch(href, { method: 'HEAD' }).catch(() => {});
-            }
-        });
-    }
-    
-    // Méthode pour déclencher une transition spécifique
-    triggerTransition(category) {
-        const transitionClass = this.getTransitionClass(category);
-        this.applyTransition(transitionClass, () => {});
-    }
-}
-
-// ============================================
-// EFFETS DE SCROLL AMÉLIORÉS
-// ============================================
-
-class ScrollEffects {
-    constructor() {
-        this.init();
-    }
-    
-    init() {
-        // Effets de scroll fluides
-        this.setupSmoothScroll();
-        
-        // Animations au scroll
-        this.setupScrollAnimations();
-        
-        // Parallax pour les héros
-        this.setupParallax();
-    }
-    
-    setupSmoothScroll() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    }
-    
-    setupScrollAnimations() {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-visible');
-                    
-                    // Déclencher des animations personnalisées selon la catégorie
-                    const category = entry.target.dataset.category;
-                    if (category) {
-                        this.applyCategoryAnimation(entry.target, category);
-                    }
-                }
-            });
-        }, observerOptions);
-        
-        // Observer tous les éléments avec classe animate-*
-        document.querySelectorAll('.animate-fadeInUp, .card, .project-card, .experience-card').forEach(el => {
-            observer.observe(el);
-        });
-    }
-    
-    applyCategoryAnimation(element, category) {
-        // Animations spécifiques par catégorie
-        switch(category.toLowerCase()) {
-            case 'cybersécurité':
-            case 'cybersecurite':
-                element.style.animation = 'fadeInUp 0.6s ease-out forwards, glow-cyber 2s ease-in-out infinite';
-                break;
-            case 'développement':
-                element.style.animation = 'fadeInUp 0.6s ease-out forwards, slideFromLeft 0.8s ease-out';
-                break;
-            case 'électronique':
-            case 'electronique':
-                element.style.animation = 'fadeInUp 0.6s ease-out forwards, pulse-electronic 1.5s ease-in-out infinite';
-                break;
-            case 'web design':
-                element.style.animation = 'fadeInUp 0.6s ease-out forwards, gradient-shift 3s ease infinite';
-                break;
-            case 'entrepreneuriat':
-                element.style.animation = 'fadeInUp 0.6s ease-out forwards, bounce 0.5s ease';
-                break;
-            default:
-                element.style.animation = 'fadeInUp 0.6s ease-out forwards';
-        }
-    }
-    
-    setupParallax() {
-        const parallaxElements = document.querySelectorAll('.page-header, .hero');
-        
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
+            // Changer la couleur de fond selon la page destination
+            this.updateOverlayColor(href);
             
-            parallaxElements.forEach(el => {
-                const speed = el.dataset.parallaxSpeed || 0.5;
-                el.style.transform = `translateY(${scrollY * speed}px)`;
-            });
-        });
-    }
-}
-
-// ============================================
-// GESTIONNAIRE DE CACHE POUR LES PAGES
-// ============================================
-
-class PageCache {
-    constructor() {
-        this.cache = new Map();
-        this.init();
+            // Naviguer après un délai
+            setTimeout(() => {
+                window.location.href = href;
+            }, this.transitionDuration);
+        }, 50);
     }
     
-    init() {
-        // Écouter les événements de navigation
-        window.addEventListener('popstate', () => {
-            this.handleNavigation();
-        });
-    }
-    
-    cachePage(url, content) {
-        this.cache.set(url, {
-            content: content,
-            timestamp: Date.now()
-        });
-    }
-    
-    getCachedPage(url) {
-        const cached = this.cache.get(url);
-        if (cached && (Date.now() - cached.timestamp) < 300000) { // 5 minutes
-            return cached.content;
+    updateOverlayColor(href) {
+        // Déterminer la couleur selon la page destination
+        if (href.includes('cyber') || href.includes('ctf') || href.includes('secure')) {
+            this.overlay.style.background = 'linear-gradient(135deg, #00ff88 0%, #00d4ff 100%)';
+            this.loader.style.borderTopColor = '#00ff88';
+            this.loader.style.borderRightColor = '#00d4ff';
+        } else if (href.includes('electronique') || href.includes('esp32') || href.includes('electro')) {
+            this.overlay.style.background = 'linear-gradient(135deg, #00b8d4 0%, #009688 100%)';
+            this.loader.style.borderTopColor = '#00b8d4';
+            this.loader.style.borderRightColor = '#009688';
+        } else if (href.includes('developpement') || href.includes('gestionpro')) {
+            this.overlay.style.background = 'linear-gradient(135deg, #2c5aa0 0%, #4a90e2 100%)';
+            this.loader.style.borderTopColor = '#2c5aa0';
+            this.loader.style.borderRightColor = '#4a90e2';
+        } else if (href.includes('experience')) {
+            this.overlay.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            this.loader.style.borderTopColor = '#667eea';
+            this.loader.style.borderRightColor = '#764ba2';
+        } else {
+            this.overlay.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            this.loader.style.borderTopColor = '#667eea';
         }
-        return null;
     }
     
-    handleNavigation() {
-        // Gérer la navigation via les boutons avant/arrière
-        const currentUrl = window.location.pathname;
-        const cachedContent = this.getCachedPage(currentUrl);
+    handleInitialLoad() {
+        // Supprimer l'overlay au chargement initial
+        setTimeout(() => {
+            this.overlay.style.opacity = '0';
+            this.overlay.style.pointerEvents = 'none';
+        }, 500);
+    }
+    
+    preloadPages() {
+        const pages = [
+            'index.html',
+            'projects.html',
+            'experiences.html',
+            'projects/ctf-challenge.html',
+            'projects/gestionpro.html',
+            'projects/esp32-automation.html',
+            'experiences/experience-securetech.html',
+            'experiences/experience-techinnov.html',
+            'experiences/experience-electrosystems.html'
+        ];
         
-        if (cachedContent) {
-            // Remplacer le contenu avec la version cache
-            document.documentElement.innerHTML = cachedContent;
-        }
+        pages.forEach(page => {
+            if (!window.location.pathname.includes(page)) {
+                const link = document.createElement('link');
+                link.rel = 'prefetch';
+                link.href = page;
+                document.head.appendChild(link);
+            }
+        });
     }
 }
 
@@ -359,78 +174,18 @@ class PageCache {
 // INITIALISATION
 // ============================================
 
-// Initialiser les managers quand le DOM est prêt
+// Initialiser le gestionnaire de transitions quand le DOM est prêt
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialiser le gestionnaire de transitions
     const transitionManager = new TransitionManager();
-    
-    // Initialiser les effets de scroll
-    const scrollEffects = new ScrollEffects();
-    
-    // Initialiser le cache de pages
-    const pageCache = new PageCache();
-    
-    // Exposer les instances pour accès global
     window.TransitionManager = transitionManager;
-    window.ScrollEffects = scrollEffects;
-    window.PageCache = pageCache;
-    
-    // Ajouter des classes utilitaires
-    document.body.classList.add('transition-enabled');
-});
-
-// Améliorer la navigation avec pré-chargement
-window.addEventListener('load', () => {
-    // Pré-charger les pages principales
-    const mainPages = ['index.html', 'projects.html', 'experiences.html'];
-    mainPages.forEach(page => {
-        if (!window.location.pathname.includes(page)) {
-            fetch(page, { method: 'HEAD' }).catch(() => {});
-        }
-    });
-    
-    // Ajouter un indicateur de chargement
-    const loadingIndicator = document.createElement('div');
-    loadingIndicator.className = 'progress-bar-container';
-    loadingIndicator.innerHTML = '<div class="progress-bar"></div>';
-    document.body.appendChild(loadingIndicator);
-    
-    // Animer la barre de progression
-    const progressBar = loadingIndicator.querySelector('.progress-bar');
-    let progress = 0;
-    const interval = setInterval(() => {
-        progress += Math.random() * 10;
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(interval);
-            setTimeout(() => {
-                loadingIndicator.style.opacity = '0';
-                setTimeout(() => {
-                    loadingIndicator.remove();
-                }, 300);
-            }, 200);
-        }
-        progressBar.style.width = `${progress}%`;
-    }, 100);
 });
 
 // Gérer les erreurs de chargement d'images
-window.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const images = document.querySelectorAll('img');
     images.forEach(img => {
         img.onerror = function() {
             this.src = `https://placehold.co/600x400/2c3e50/ffffff?text=${encodeURIComponent(this.alt || 'Portfolio')}`;
         };
-        
-        // Forcer le déclenchement si l'image n'existe pas localement
-        if (!img.complete && img.src.includes('images/')) {
-            const originalSrc = img.src;
-            img.src = originalSrc;
-        }
     });
 });
-
-// Exporter pour utilisation dans main.js
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { TransitionManager, ScrollEffects, PageCache };
-}

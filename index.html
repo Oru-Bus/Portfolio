@@ -17,6 +17,10 @@
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .hero h1 {
             background: none;
@@ -44,6 +48,16 @@
         .stat-item:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); }
         .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem; }
         .stat-label { color: #666; font-size: 1rem; }
+        
+        /* Boutons avec texte toujours lisible */
+        .btn {
+            min-width: 200px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            color: white !important;
+        }
+        
         @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 480px) { .stats-grid { grid-template-columns: 1fr; } }
     </style>
@@ -196,7 +210,7 @@
             </div>
             
             <div class="text-center mt-3">
-                <a href="projects.html" class="btn">Voir tous les projets</a>
+                <a href="projects.html" class="btn" style="color: white;">Voir tous les projets</a>
             </div>
         </div>
     </section>
@@ -245,7 +259,7 @@
             </div>
             
             <div class="text-center mt-3">
-                <a href="experiences.html" class="btn">Voir toutes les expériences</a>
+                <a href="experiences.html" class="btn" style="color: white;">Voir toutes les expériences</a>
             </div>
         </div>
     </section>

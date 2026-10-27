@@ -2,12 +2,6 @@
 // MAIN.JS - Point d'entrée principal du portfolio
 // ============================================
 
-// Charger le module de transitions
-const transitionsScript = document.createElement('script');
-transitionsScript.src = 'js/transitions.js';
-transitionsScript.async = false;
-document.head.appendChild(transitionsScript);
-
 // ===== NAVBAR SCROLL EFFECT =====
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
@@ -65,8 +59,7 @@ const projectsData = [
         category: 'Cybersécurité',
         tags: ['CTF', 'Pentest', 'Python', 'Cryptographie', 'Réseau'],
         image: 'images/project-ctf.jpg',
-        page: 'projects/ctf-challenge.html',
-        transition: 'transition-cybersecurity'
+        page: 'projects/ctf-challenge.html'
     },
     {
         id: 2,
@@ -76,8 +69,7 @@ const projectsData = [
         category: 'Développement',
         tags: ['JavaScript', 'React', 'Node.js', 'MongoDB', 'Bootstrap'],
         image: 'images/project-gestionpro.jpg',
-        page: 'projects/gestionpro.html',
-        transition: 'transition-developpement'
+        page: 'projects/gestionpro.html'
     },
     {
         id: 3,
@@ -87,8 +79,7 @@ const projectsData = [
         category: 'Électronique',
         tags: ['ESP32', 'Arduino', 'IoT', 'MQTT', 'C++', 'WiFi'],
         image: 'images/project-esp32.jpg',
-        page: 'projects/esp32-automation.html',
-        transition: 'transition-electronique'
+        page: 'projects/esp32-automation.html'
     },
     {
         id: 4,
@@ -98,8 +89,7 @@ const projectsData = [
         category: 'Cybersécurité',
         tags: ['Security', 'Web', 'API', 'Vulnerability', 'Python', 'Flask'],
         image: 'images/project-bugbounty.jpg',
-        page: '#',
-        transition: 'transition-cybersecurity'
+        page: '#'
     },
     {
         id: 5,
@@ -109,8 +99,7 @@ const projectsData = [
         category: 'Web Design',
         tags: ['HTML', 'CSS', 'JavaScript', 'Responsive', 'Design'],
         image: 'images/project-portfolio.jpg',
-        page: '#',
-        transition: 'transition-webdesign'
+        page: '#'
     },
     {
         id: 6,
@@ -120,8 +109,7 @@ const projectsData = [
         category: 'Entrepreneuriat',
         tags: ['Startup', 'Business', 'Management', 'Stratégie', 'Innovation'],
         image: 'images/project-startup.jpg',
-        page: '#',
-        transition: 'transition-entrepreneuriat'
+        page: '#'
     }
 ];
 
@@ -133,7 +121,7 @@ function renderProjects(projects) {
     // Effet de fondu sortant avant de changer le contenu
     projectsContainer.style.opacity = '0';
     projectsContainer.style.transform = 'translateY(10px)';
-    projectsContainer.style.transition = 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    projectsContainer.style.transition = 'all 0.4s ease';
 
     setTimeout(() => {
         projectsContainer.innerHTML = '';
@@ -141,7 +129,6 @@ function renderProjects(projects) {
         projects.forEach(project => {
             const projectCard = document.createElement('div');
             projectCard.className = 'card animate-fadeInUp';
-            projectCard.dataset.category = project.category;
             projectCard.innerHTML = `
                 <img src="${project.image || 'images/default-project.jpg'}" alt="${project.title}" class="card-img" loading="lazy">
                 <div class="card-body">
@@ -152,7 +139,7 @@ function renderProjects(projects) {
                     <div class="card-tags">
                         ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                     </div>
-                    <a href="${project.page}" class="btn btn-outline mt-2 project-link" data-category="${project.category}" data-transition="${project.transition || 'default'}">En savoir plus</a>
+                    <a href="${project.page}" class="btn btn-outline mt-2" data-category="${project.category}">En savoir plus</a>
                 </div>
             `;
             projectsContainer.appendChild(projectCard);
@@ -161,13 +148,6 @@ function renderProjects(projects) {
         // Remettre l'opacité à 1 avec un effet fluide
         projectsContainer.style.opacity = '1';
         projectsContainer.style.transform = 'translateY(0)';
-        
-        // Déclencher les animations avec délai
-        setTimeout(() => {
-            projectsContainer.querySelectorAll('.card').forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-            });
-        }, 100);
     }, 400);
 }
 
@@ -292,264 +272,115 @@ function scrollToTop() {
 // ===== INITIALIZE =====
 document.addEventListener('DOMContentLoaded', function() {
     initProjectsPage();
-    
-    // Initialiser les transitions pour les liens existants
-    setupLinkTransitions();
 });
-
-// ===== GESTION DES TRANSITIONS DE LIENS =====
-function setupLinkTransitions() {
-    // Ajouter des attributs data-category aux liens qui n'en ont pas
-    document.querySelectorAll('a[href*="projects/"], a[href*="experiences/"]').forEach(link => {
-        const href = link.getAttribute('href');
-        let category = link.dataset.category;
-        
-        if (!category) {
-            // Déduire la catégorie à partir de l'URL
-            if (href.includes('ctf') || href.includes('secure')) {
-                category = 'Cybersécurité';
-            } else if (href.includes('esp32') || href.includes('electro')) {
-                category = 'Électronique';
-            } else if (href.includes('gestionpro')) {
-                category = 'Développement';
-            } else if (href.includes('experience-securetech')) {
-                category = 'SecureTech';
-            } else if (href.includes('experience-techinnov')) {
-                category = 'TechInnov';
-            } else if (href.includes('experience-electrosystems')) {
-                category = 'ElectroSystems';
-            }
-            
-            if (category) {
-                link.dataset.category = category;
-            }
-        }
-    });
-    
-    // Intercepter les clics sur les liens internes
-    document.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            const targetHref = this.getAttribute('href');
-            const category = this.dataset.category;
-            
-            // Ignorer les ancres (#), liens externes ou cibles vides
-            if (!targetHref || targetHref.startsWith('#') || targetHref.startsWith('http') || targetHref.startsWith('mailto')) {
-                return;
-            }
-            
-            // Ignorer si le lien a déjà un target
-            if (this.target === '_blank' || this.target === '_new') {
-                return;
-            }
-            
-            e.preventDefault();
-            
-            // Déclencher la transition appropriée
-            triggerCategoryTransition(category, targetHref);
-        });
-    });
-}
-
-// ===== DÉCLENCHER LA TRANSITION SELON LA CATÉGORIE =====
-function triggerCategoryTransition(category, href) {
-    // Créer l'overlay de transition
-    const overlay = document.createElement('div');
-    overlay.className = 'transition-overlay';
-    
-    // Déterminer la classe de transition en fonction de la catégorie
-    let transitionClass = 'transition-cybersecurity'; // Par défaut
-    
-    if (category) {
-        const categoryMap = {
-            'Cybersécurité': 'transition-cybersecurity',
-            'Cybersecurite': 'transition-cybersecurity',
-            'Développement': 'transition-developpement',
-            'Électronique': 'transition-electronique',
-            'Electronique': 'transition-electronique',
-            'Web Design': 'transition-webdesign',
-            'Entrepreneuriat': 'transition-entrepreneuriat',
-            'SecureTech': 'transition-securetech',
-            'SecureTech Solutions': 'transition-securetech',
-            'TechInnov': 'transition-techinnov',
-            'ElectroSystems': 'transition-electrosystems'
-        };
-        
-        transitionClass = categoryMap[category] || transitionClass;
-    }
-    
-    overlay.classList.add(transitionClass);
-    overlay.innerHTML = '<div class="transition-loader"></div>';
-    document.body.appendChild(overlay);
-    
-    // Activer l'overlay
-    setTimeout(() => {
-        overlay.classList.add('active');
-    }, 10);
-    
-    // Naviguer après la transition
-    setTimeout(() => {
-        window.location.href = href;
-    }, 1000);
-}
 
 // ===== GESTION DES IMAGES =====
 document.addEventListener('DOMContentLoaded', () => {
     const images = document.querySelectorAll('img');
     images.forEach(img => {
         img.onerror = function() {
-            // Remplace l'image cassée par une image de placeholder propre
             this.src = `https://placehold.co/600x400/2c3e50/ffffff?text=${encodeURIComponent(this.alt || 'Portfolio')}`;
         };
         
-        // Chargement lazy pour les images
         if (!img.loading) {
             img.loading = 'lazy';
         }
-        
-        // Force le déclencheur si l'image n'existe pas localement
-        if (!img.complete && img.src.includes('images/')) {
-            const originalSrc = img.src;
-            img.src = originalSrc;
-        }
     });
 });
 
-// ===== OPTIMISATION DES PERFORMANCES =====
-
-// Pré-charger les pages principales
-window.addEventListener('load', () => {
-    const pagesToPreload = [
-        'index.html',
-        'projects.html',
-        'experiences.html',
-        'projects/ctf-challenge.html',
-        'projects/gestionpro.html',
-        'projects/esp32-automation.html',
-        'experiences/experience-securetech.html',
-        'experiences/experience-techinnov.html',
-        'experiences/experience-electrosystems.html'
-    ];
+// ===== TRANSITIONS FLUIDES =====
+// Intercepter les clics sur les liens internes pour des transitions fluides
+document.addEventListener('DOMContentLoaded', () => {
+    const transitionDuration = 400;
     
-    pagesToPreload.forEach(page => {
-        if (!window.location.pathname.includes(page)) {
-            fetch(page, { method: 'HEAD' }).catch(() => {});
-        }
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const targetHref = this.getAttribute('href');
+            
+            // Ignorer les ancres (#), liens externes ou cibles vides
+            if (!targetHref || targetHref.startsWith('#') || targetHref.startsWith('http') || targetHref.startsWith('mailto')) {
+                return;
+            }
+            
+            // Ignorer si le lien a un target
+            if (this.target === '_blank' || this.target === '_new') {
+                return;
+            }
+            
+            e.preventDefault();
+            
+            // Créer et afficher l'overlay de transition
+            const overlay = document.createElement('div');
+            overlay.id = 'transition-overlay';
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity ${transitionDuration}ms ease-in-out;
+            `;
+            
+            const loader = document.createElement('div');
+            loader.style.cssText = `
+                width: 50px;
+                height: 50px;
+                border: 4px solid rgba(255, 255, 255, 0.3);
+                border-top-color: white;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            `;
+            
+            overlay.appendChild(loader);
+            document.body.appendChild(overlay);
+            
+            // Ajouter le keyframe pour le spin
+            const style = document.createElement('style');
+            style.id = 'transition-spin-style';
+            style.textContent = `
+                @keyframes spin {
+                    to { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Activer l'overlay
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+                overlay.style.pointerEvents = 'all';
+                
+                // Naviguer après la transition
+                setTimeout(() => {
+                    window.location.href = targetHref;
+                }, transitionDuration);
+            }, 50);
+        });
     });
 });
 
-// ===== EFFETS DE CHARGEMENT =====
-
-// Ajouter un indicateur de chargement global
-window.addEventListener('beforeunload', () => {
-    const loadingOverlay = document.createElement('div');
-    loadingOverlay.className = 'transition-overlay transition-cybersecurity active';
-    loadingOverlay.innerHTML = '<div class="transition-loader"></div>';
-    document.body.appendChild(loadingOverlay);
-});
-
-// Nettoyer au chargement de la nouvelle page
+// Nettoyer les overlays existants au chargement
 window.addEventListener('load', () => {
-    const existingOverlays = document.querySelectorAll('.transition-overlay');
+    const existingOverlays = document.querySelectorAll('#transition-overlay, #page-transition-overlay');
     existingOverlays.forEach(overlay => {
         overlay.remove();
     });
-});
-
-// ===== ANIMATIONS AU SCROLL =====
-
-// Observer pour les animations au scroll
-const scrollObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-visible');
-            
-            // Déclencher des animations spécifiques selon la catégorie
-            const category = entry.target.dataset.category;
-            if (category) {
-                applyCategoryAnimation(entry.target, category);
-            }
-        }
-    });
-}, {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-});
-
-// Appliquer les animations par catégorie
-function applyCategoryAnimation(element, category) {
-    const animations = {
-        'Cybersécurité': 'glow-cyber 2s ease-in-out infinite',
-        'Cybersecurite': 'glow-cyber 2s ease-in-out infinite',
-        'Développement': 'slideFromLeft 0.8s ease-out',
-        'Électronique': 'pulse-electronic 1.5s ease-in-out infinite',
-        'Electronique': 'pulse-electronic 1.5s ease-in-out infinite',
-        'Web Design': 'gradient-shift 3s ease infinite',
-        'Entrepreneuriat': 'bounce 0.5s ease'
-    };
     
-    const animation = animations[category];
-    if (animation) {
-        element.style.animation = `fadeInUp 0.6s ease-out forwards, ${animation}`;
-    }
-}
-
-// Observer les cartes de projets et d'expériences
-function setupScrollObservers() {
-    document.querySelectorAll('.card, .project-card, .experience-card').forEach(card => {
-        scrollObserver.observe(card);
+    const existingStyles = document.querySelectorAll('#transition-spin-style');
+    existingStyles.forEach(style => {
+        style.remove();
     });
-}
-
-// Initialiser les observers au chargement
-document.addEventListener('DOMContentLoaded', setupScrollObservers);
-
-// ===== FONCTIONS UTILITAIRES =====
-
-// Débounce pour les événements de scroll
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Throttle pour les animations
-function throttle(func, limit) {
-    let inThrottle;
-    return function(...args) {
-        if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
-}
-
-// ===== COMPATIBILITÉ =====
+});
 
 // Polyfill pour les anciennes versions
 if (!String.prototype.startsWith) {
     String.prototype.startsWith = function(search, pos) {
         return this.substr(!pos || pos < 0 ? 0 : +pos, search.length) === search;
-    };
-}
-
-// Exporter pour utilisation externe
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        renderProjects,
-        filterProjects,
-        sortProjects,
-        formatDate,
-        initProjectsPage,
-        scrollToTop,
-        triggerCategoryTransition,
-        setupLinkTransitions
     };
 }

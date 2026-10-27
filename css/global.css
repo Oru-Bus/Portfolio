@@ -768,6 +768,181 @@ a:hover {
 .delay-3 { animation-delay: 0.3s; }
 .delay-4 { animation-delay: 0.4s; }
 
+/* ===== TRANSITIONS DE PAGE ===== */
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOutPage {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.page-fade-in {
+    animation: fadeInPage 0.5s ease-out forwards;
+}
+
+.page-fade-out {
+    animation: fadeOutPage 0.5s ease-in forwards;
+}
+
+/* Slide transitions */
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+.page-slide-in-right {
+    animation: slideInFromRight 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.page-slide-out-left {
+    animation: slideOutToLeft 0.6s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+}
+
+/* Zoom transitions */
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.page-zoom-in {
+    animation: zoomIn 0.5s ease-out forwards;
+}
+
+/* ===== ANIMATIONS SPÉCIFIQUES PAR CATÉGORIE ===== */
+
+/* Cybersécurité */
+@keyframes glowCyber {
+    0%, 100% { box-shadow: 0 0 5px rgba(0, 255, 136, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.8), 0 0 30px rgba(0, 212, 255, 0.5); }
+}
+
+.glow-cyber {
+    animation: glowCyber 2s ease-in-out infinite;
+}
+
+/* Électronique */
+@keyframes pulseElectronic {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+.pulse-electronic {
+    animation: pulseElectronic 1.5s ease-in-out infinite;
+}
+
+/* Développement */
+@keyframes slideFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slideFromLeft {
+    animation: slideFromLeft 0.8s ease-out forwards;
+}
+
+/* Gradient shift pour Web Design */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.gradient-shift {
+    animation: gradientShift 3s ease infinite;
+}
+
+/* Bounce pour Entrepreneuriat */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.bounce {
+    animation: bounce 0.5s ease;
+}
+
+/* ===== UTILITY CLASSES POUR TRANSITIONS ===== */
+.transition-fast { transition-duration: 0.2s; }
+.transition-normal { transition-duration: 0.3s; }
+.transition-slow { transition-duration: 0.5s; }
+.transition-slower { transition-duration: 0.8s; }
+
+.ease-in-out-cubic { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+.ease-out-cubic { transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.ease-in-cubic { transition-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53); }
+
+/* ===== CLASSES POUR LES ÉLÉMENTS ANIMÉS ===== */
+.animate-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* ===== OPTIMISATION DES PERFORMANCES ===== */
+.will-animate {
+    will-change: transform, opacity;
+}
+
+.hardware-accel {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* ===== ACCESSIBILITÉ ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
 /* ===== UTILITY CLASSES ===== */
 .text-center { text-align: center; }
 .text-left { text-align: left; }

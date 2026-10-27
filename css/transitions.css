@@ -1,0 +1,593 @@
+/* ============================================
+   TRANSITIONS GLOBALES & COMMUNES
+   ============================================ */
+
+/* --- Page Transition Container --- */
+.page-transition-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Overlay de transition de base --- */
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out;
+    z-index: 9999;
+}
+
+.transition-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* --- Loader de base --- */
+.transition-loader {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   TRANSITIONS PAR CATÉGORIE - PROJETS
+   ============================================ */
+
+/* --- Cybersécurité --- */
+.transition-cybersecurity .transition-loader {
+    border-top-color: #00ff88;
+    border-right-color: #00d4ff;
+    border-bottom-color: #ff0055;
+    border-left-color: #00ff88;
+    animation: spin 0.8s linear infinite, pulse-cyber 2s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+@keyframes pulse-cyber {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+}
+
+.transition-cybersecurity .transition-overlay {
+    background: radial-gradient(ellipse at center, rgba(0, 255, 136, 0.1) 0%, rgba(0, 212, 255, 0.05) 50%, transparent 100%);
+}
+
+.transition-cybersecurity .transition-loader::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 2px solid rgba(0, 255, 136, 0.2);
+    border-radius: 50%;
+    animation: scan-cyber 3s linear infinite;
+}
+
+@keyframes scan-cyber {
+    0% { transform: rotate(0deg); border-color: rgba(0, 255, 136, 0.2); }
+    33% { border-color: rgba(0, 212, 255, 0.2); }
+    66% { border-color: rgba(255, 0, 85, 0.2); }
+    100% { transform: rotate(360deg); border-color: rgba(0, 255, 136, 0.2); }
+}
+
+/* --- Développement --- */
+.transition-developpement .transition-loader {
+    width: 50px;
+    height: 50px;
+    border: none;
+    background: conic-gradient(from 0deg, #2c5aa0, #4a90e2, #2c5aa0);
+    border-radius: 50%;
+    animation: rotate-dev 2s linear infinite;
+}
+
+.transition-developpement .transition-loader::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    background: #1a3a5c;
+    border-radius: 50%;
+}
+
+@keyframes rotate-dev {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.transition-developpement .transition-overlay {
+    background: linear-gradient(135deg, rgba(44, 90, 160, 0.1) 0%, rgba(74, 144, 226, 0.05) 100%);
+}
+
+/* --- Électronique --- */
+.transition-electronique .transition-loader {
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgba(0, 184, 212, 0.3);
+    border-radius: 50%;
+    position: relative;
+    animation: pulse-electronic 1.5s ease-in-out infinite;
+}
+
+.transition-electronique .transition-loader::before,
+.transition-electronique .transition-loader::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #00b8d4;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00b8d4;
+}
+
+.transition-electronique .transition-loader::before {
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: orbit-electronic 1.5s linear infinite;
+}
+
+.transition-electronique .transition-loader::after {
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: orbit-electronic 1.5s linear infinite reverse;
+}
+
+@keyframes pulse-electronic {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+@keyframes orbit-electronic {
+    0% { transform: translateX(-50%) rotate(0deg) translateY(-25px) rotate(0deg); }
+    100% { transform: translateX(-50%) rotate(360deg) translateY(-25px) rotate(-360deg); }
+}
+
+.transition-electronique .transition-overlay {
+    background: radial-gradient(circle at center, rgba(0, 184, 212, 0.05) 0%, transparent 70%);
+}
+
+/* --- Web Design --- */
+.transition-webdesign .transition-loader {
+    width: 60px;
+    height: 60px;
+    border: none;
+    background: linear-gradient(45deg, #e74c3c, #3498db, #2ecc71, #f39c12);
+    background-size: 400% 400%;
+    border-radius: 50%;
+    animation: gradient-shift 3s ease infinite, scale-web 1.5s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes scale-web {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.transition-webdesign .transition-overlay {
+    background: linear-gradient(45deg, rgba(231, 76, 60, 0.05) 0%, rgba(52, 152, 219, 0.05) 50%, rgba(46, 204, 113, 0.05) 100%);
+}
+
+/* --- Entrepreneuriat --- */
+.transition-entrepreneuriat .transition-loader {
+    width: 60px;
+    height: 60px;
+    border: 4px solid #f39c12;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate-business 2s linear infinite;
+}
+
+.transition-entrepreneuriat .transition-loader::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: #f39c12;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #f39c12;
+}
+
+@keyframes rotate-business {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.transition-entrepreneuriat .transition-overlay {
+    background: radial-gradient(circle at center, rgba(243, 156, 18, 0.1) 0%, transparent 70%);
+}
+
+/* ============================================
+   TRANSITIONS PAR CATÉGORIE - EXPÉRIENCES
+   ============================================ */
+
+/* --- SecureTech (Cybersécurité) --- */
+.transition-securetech .transition-loader {
+    border-top-color: #00ff88;
+    border-right-color: #00d4ff;
+    border-bottom-color: #ff0055;
+    border-left-color: #00ff88;
+    animation: spin 0.6s linear infinite, pulse-cyber 1.5s ease-in-out infinite;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.7);
+}
+
+.transition-securetech .transition-overlay {
+    background: 
+        radial-gradient(ellipse at 10% 20%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 80%, rgba(255, 0, 85, 0.15) 0%, transparent 50%);
+}
+
+.transition-securetech .transition-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 255, 136, 0.03) 51%);
+    background-size: 100% 4px;
+    animation: scan 4s linear infinite;
+}
+
+@keyframes scan {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+/* --- TechInnov (Développement) --- */
+.transition-techinnov .transition-loader {
+    width: 50px;
+    height: 50px;
+    border: none;
+    background: conic-gradient(from 0deg, #4a90e2, #2c5aa0, #4a90e2);
+    border-radius: 50%;
+    animation: rotate-dev 1.5s linear infinite;
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+}
+
+.transition-techinnov .transition-loader::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    background: #1a3a5c;
+    border-radius: 50%;
+}
+
+.transition-techinnov .transition-overlay {
+    background: linear-gradient(135deg, rgba(44, 90, 160, 0.1) 0%, rgba(74, 144, 226, 0.08) 100%);
+}
+
+/* --- ElectroSystems (Électronique) --- */
+.transition-electrosystems .transition-loader {
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgba(0, 184, 212, 0.5);
+    border-radius: 50%;
+    position: relative;
+    animation: pulse-electronic 1.2s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(0, 184, 212, 0.5);
+}
+
+.transition-electrosystems .transition-loader::before,
+.transition-electrosystems .transition-loader::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #00b8d4;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #00b8d4;
+}
+
+.transition-electrosystems .transition-loader::before {
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: orbit-electronic 1.2s linear infinite;
+}
+
+.transition-electrosystems .transition-loader::after {
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: orbit-electronic 1.2s linear infinite reverse;
+}
+
+.transition-electrosystems .transition-overlay {
+    background: 
+        radial-gradient(ellipse at 20% 80%, rgba(0, 184, 212, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(0, 150, 136, 0.15) 0%, transparent 50%);
+}
+
+/* ============================================
+   TRANSITIONS DE PAGE (Navigation entre pages)
+   ============================================ */
+
+/* --- Fade In/Out amélioré --- */
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOutPage {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.page-fade-in {
+    animation: fadeInPage 0.5s ease-out forwards;
+}
+
+.page-fade-out {
+    animation: fadeOutPage 0.5s ease-in forwards;
+}
+
+/* --- Slide transitions --- */
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.page-slide-in-right {
+    animation: slideInFromRight 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.page-slide-out-left {
+    animation: slideOutToLeft 0.6s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+}
+
+.page-slide-in-left {
+    animation: slideInFromLeft 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.page-slide-out-right {
+    animation: slideOutToRight 0.6s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+}
+
+/* --- Zoom transitions --- */
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes zoomOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+}
+
+.page-zoom-in {
+    animation: zoomIn 0.5s ease-out forwards;
+}
+
+.page-zoom-out {
+    animation: zoomOut 0.5s ease-in forwards;
+}
+
+/* --- Transition personnalisée pour les liens internes --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+/* ============================================
+   EFFETS DE CHARGEMENT PRÉVENTIF
+   ============================================ */
+
+/* --- Pré-chargement des pages --- */
+.preload-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 0.3s ease;
+}
+
+.preload-page.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* --- Indicateur de progression --- */
+.progress-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* ============================================
+   CLASSES UTILITAIRES POUR LES TRANSITIONS
+   ============================================ */
+
+.transition-fast { transition-duration: 0.2s; }
+.transition-normal { transition-duration: 0.3s; }
+.transition-slow { transition-duration: 0.5s; }
+.transition-slower { transition-duration: 0.8s; }
+
+.ease-in-out-cubic { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+.ease-out-cubic { transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.ease-in-cubic { transition-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53); }
+.ease-out-back { transition-timing-function: cubic-bezier(0.12, 0, 0.39, 0); }
+
+/* ============================================
+   ANIMATIONS POUR LES ÉLÉMENTS INTERACTIFS
+   ============================================ */
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 5px currentColor; }
+    50% { box-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
+}
+
+.bounce { animation: bounce 0.5s ease; }
+.shake { animation: shake 0.5s ease; }
+.glow-pulse { animation: glow 2s ease-in-out infinite; }
+
+/* ============================================
+   OPTIMISATION DES PERFORMANCES
+   ============================================ */
+
+/* Utilisation de will-change pour les animations complexes */
+.will-animate {
+    will-change: transform, opacity;
+}
+
+/* Accélération matérielle */
+.hardware-accel {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Désactivation des animations pour les préférences réduites */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

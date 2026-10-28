@@ -23,9 +23,25 @@
         }
         .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
         .page-header p { font-size: 1.2rem; opacity: 0.9; }
-        .experience-card { position: relative; overflow: hidden; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; margin-bottom: 2rem; border: none !important; }
+        .experience-card { position: relative; overflow: hidden; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; margin-bottom: 0; border: none !important; }
         .experience-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); }
         .experience-img { width: 100%; height: 250px; object-fit: cover; }
+
+        /* Correctif "conteneurs doublés" :
+           global.css donne à .experience-content son propre fond blanc, ombre, arrondi et padding.
+           À l'intérieur d'une .card, cela créait une seconde boîte (et un trait) sous le bouton. */
+        .experience-card .experience-content {
+            background: transparent;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .experience-card .experience-gains { flex-grow: 1; margin-bottom: 1rem; }
+        .experience-card .view-more-btn { margin-top: auto; align-self: flex-start; }
+
         .experience-overlay {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
@@ -34,13 +50,11 @@
         .experience-title { font-size: 1.5rem; color: white; margin-bottom: 0.5rem; }
         .experience-company { color: rgba(255, 255, 255, 0.9); font-size: 1.1rem; margin-bottom: 0.5rem; }
         .experience-date { color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; }
-        .experience-content { padding: 1.5rem; }
         .experience-description { color: #666; margin-bottom: 1rem; line-height: 1.8; }
         .gains-title { color: var(--primary); font-weight: 600; margin-bottom: 0.5rem; }
         .gains-list { list-style: none; padding-left: 0; }
         .gains-list li { padding-left: 1.5rem; margin-bottom: 0.5rem; position: relative; color: #555; }
         .gains-list li::before { content: '►'; position: absolute; left: 0; color: var(--secondary); }
-        .view-more-btn { margin-top: 1rem; }
         .timeline { position: relative; padding-left: 3rem; margin: 2rem 0; }
         .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: var(--secondary); }
         .timeline-item { position: relative; padding-left: 2rem; margin-bottom: 2rem; }
@@ -152,7 +166,6 @@
                                 <li>Prototypage rapide</li>
                             </ul>
                         </div>
-                        <!-- Lien rajouté pour uniformiser et permettre le clic -->
                         <a href="experiences/experience-electrosystems.html" class="btn btn-outline view-more-btn">En savoir plus</a>
                     </div>
                 </div>

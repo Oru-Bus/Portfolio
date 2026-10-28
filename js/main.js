@@ -1,10 +1,12 @@
 // ============================================
 // MAIN.JS - Point d'entrée principal du portfolio
+// (les transitions de page sont gérées uniquement par transitions.js)
 // ============================================
 
 // ===== NAVBAR SCROLL EFFECT =====
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
@@ -13,22 +15,25 @@ window.addEventListener('scroll', function() {
 });
 
 // ===== MOBILE MENU TOGGLE =====
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
+// (rappelé à chaque changement de page par initPage, car le contenu est remplacé sans rechargement)
+function setupMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
 
-if (hamburger && navLinks) {
-    hamburger.addEventListener('click', function() {
-        hamburger.classList.toggle('active');
-        navLinks.classList.toggle('active');
-    });
-
-    // Close menu when clicking a link
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
         });
-    });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
 }
 
 // ===== SCROLL ANIMATIONS =====
@@ -113,6 +118,16 @@ const projectsData = [
     }
 ];
 
+// Thème de transition associé à chaque catégorie (lu par transitions.js via data-theme)
+const CATEGORY_THEMES = {
+    'Cybersécurité': 'cyber',
+    'Électronique': 'electronic',
+    'Développement': 'dev'
+};
+
+// État courant de la page projets (catégorie + tri)
+const projectsState = { category: 'all', sort: 'date-desc' };
+
 // ===== RENDER PROJECTS =====
 function renderProjects(projects) {
     const projectsContainer = document.getElementById('projects-container');
@@ -127,6 +142,8 @@ function renderProjects(projects) {
         projectsContainer.innerHTML = '';
 
         projects.forEach(project => {
+            const theme = CATEGORY_THEMES[project.category];
+            const themeAttr = theme ? ` data-theme="${theme}"` : '';
             const projectCard = document.createElement('div');
             projectCard.className = 'card animate-fadeInUp';
             projectCard.innerHTML = `
@@ -139,7 +156,7 @@ function renderProjects(projects) {
                     <div class="card-tags">
                         ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                     </div>
-                    <a href="${project.page}" class="btn btn-outline mt-2" data-category="${project.category}">En savoir plus</a>
+                    <a href="${project.page}" class="btn btn-outline mt-2" data-category="${project.category}"${themeAttr}>En savoir plus</a>
                 </div>
             `;
             projectsContainer.appendChild(projectCard);
@@ -151,46 +168,45 @@ function renderProjects(projects) {
     }, 400);
 }
 
-// ===== FILTER BY CATEGORY =====
-function filterProjects(category) {
-    const filteredProjects = category === 'all'
-        ? projectsData
-        : projectsData.filter(project => project.category === category);
+// ===== FILTER + SORT =====
+function getVisibleProjects() {
+    let list = projectsState.category === 'all'
+        ? [...projectsData]
+        : projectsData.filter(project => project.category === projectsState.category);
 
-    renderProjects(filteredProjects);
+    switch (projectsState.sort) {
+        case 'date-desc':
+            list.sort((a, b) => new Date(b.date) - new Date(a.date));
+            break;
+        case 'date-asc':
+            list.sort((a, b) => new Date(a.date) - new Date(b.date));
+            break;
+        case 'name-asc':
+            list.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        case 'name-desc':
+            list.sort((a, b) => b.title.localeCompare(a.title));
+            break;
+        case 'category':
+            list.sort((a, b) => a.category.localeCompare(b.category));
+            break;
+    }
+    return list;
+}
+
+function filterProjects(category) {
+    projectsState.category = category;
+    renderProjects(getVisibleProjects());
 
     // Update active button
     document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.dataset.category === category) {
-            btn.classList.add('active');
-        }
+        btn.classList.toggle('active', btn.dataset.category === category);
     });
 }
 
-// ===== SORT PROJECTS =====
 function sortProjects(sortBy) {
-    let sortedProjects = [...projectsData];
-
-    switch(sortBy) {
-        case 'date-desc':
-            sortedProjects.sort((a, b) => new Date(b.date) - new Date(a.date));
-            break;
-        case 'date-asc':
-            sortedProjects.sort((a, b) => new Date(a.date) - new Date(b.date));
-            break;
-        case 'name-asc':
-            sortedProjects.sort((a, b) => a.title.localeCompare(b.title));
-            break;
-        case 'name-desc':
-            sortedProjects.sort((a, b) => b.title.localeCompare(a.title));
-            break;
-        case 'category':
-            sortedProjects.sort((a, b) => a.category.localeCompare(b.category));
-            break;
-    }
-
-    renderProjects(sortedProjects);
+    projectsState.sort = sortBy;
+    renderProjects(getVisibleProjects());
 }
 
 // ===== FORMAT DATE =====
@@ -207,6 +223,9 @@ function initProjectsPage() {
 
     if (!projectsContainer) return;
 
+    projectsState.category = 'all';
+    projectsState.sort = 'date-desc';
+
     // Create filter buttons
     if (filterBar) {
         const categories = ['all', ...new Set(projectsData.map(p => p.category))];
@@ -215,10 +234,7 @@ function initProjectsPage() {
             btn.className = `filter-btn ${category === 'all' ? 'active' : ''}`;
             btn.dataset.category = category;
             btn.textContent = category === 'all' ? 'Tous' : category;
-            btn.addEventListener('click', () => {
-                currentCategory = category;
-                filterProjects(category);
-            });
+            btn.addEventListener('click', () => filterProjects(category));
             filterBar.appendChild(btn);
         });
     }
@@ -240,14 +256,11 @@ function initProjectsPage() {
             sortSelect.appendChild(opt);
         });
 
-        sortSelect.addEventListener('change', () => {
-            sortProjects(sortSelect.value);
-        });
+        sortSelect.addEventListener('change', () => sortProjects(sortSelect.value));
     }
 
-    // Initial render
-    let currentCategory = 'all';
-    renderProjects(projectsData);
+    // Initial render (tri par date décroissante, comme affiché dans le select)
+    renderProjects(getVisibleProjects());
 }
 
 // ===== BACK TO TOP BUTTON =====
@@ -269,118 +282,25 @@ function scrollToTop() {
     });
 }
 
-// ===== INITIALIZE =====
-document.addEventListener('DOMContentLoaded', function() {
-    initProjectsPage();
-});
-
 // ===== GESTION DES IMAGES =====
-document.addEventListener('DOMContentLoaded', () => {
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
+function setupImages() {
+    document.querySelectorAll('img').forEach(img => {
         img.onerror = function() {
+            this.onerror = null;
             this.src = `https://placehold.co/600x400/2c3e50/ffffff?text=${encodeURIComponent(this.alt || 'Portfolio')}`;
         };
-        
-        if (!img.loading) {
-            img.loading = 'lazy';
-        }
     });
-});
-
-// ===== TRANSITIONS FLUIDES =====
-// Intercepter les clics sur les liens internes pour des transitions fluides
-document.addEventListener('DOMContentLoaded', () => {
-    const transitionDuration = 400;
-    
-    document.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            const targetHref = this.getAttribute('href');
-            
-            // Ignorer les ancres (#), liens externes ou cibles vides
-            if (!targetHref || targetHref.startsWith('#') || targetHref.startsWith('http') || targetHref.startsWith('mailto')) {
-                return;
-            }
-            
-            // Ignorer si le lien a un target
-            if (this.target === '_blank' || this.target === '_new') {
-                return;
-            }
-            
-            e.preventDefault();
-            
-            // Créer et afficher l'overlay de transition
-            const overlay = document.createElement('div');
-            overlay.id = 'transition-overlay';
-            overlay.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                z-index: 9999;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity ${transitionDuration}ms ease-in-out;
-            `;
-            
-            const loader = document.createElement('div');
-            loader.style.cssText = `
-                width: 50px;
-                height: 50px;
-                border: 4px solid rgba(255, 255, 255, 0.3);
-                border-top-color: white;
-                border-radius: 50%;
-                animation: spin 1s linear infinite;
-            `;
-            
-            overlay.appendChild(loader);
-            document.body.appendChild(overlay);
-            
-            // Ajouter le keyframe pour le spin
-            const style = document.createElement('style');
-            style.id = 'transition-spin-style';
-            style.textContent = `
-                @keyframes spin {
-                    to { transform: rotate(360deg); }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            // Activer l'overlay
-            setTimeout(() => {
-                overlay.style.opacity = '1';
-                overlay.style.pointerEvents = 'all';
-                
-                // Naviguer après la transition
-                setTimeout(() => {
-                    window.location.href = targetHref;
-                }, transitionDuration);
-            }, 50);
-        });
-    });
-});
-
-// Nettoyer les overlays existants au chargement
-window.addEventListener('load', () => {
-    const existingOverlays = document.querySelectorAll('#transition-overlay, #page-transition-overlay');
-    existingOverlays.forEach(overlay => {
-        overlay.remove();
-    });
-    
-    const existingStyles = document.querySelectorAll('#transition-spin-style');
-    existingStyles.forEach(style => {
-        style.remove();
-    });
-});
-
-// Polyfill pour les anciennes versions
-if (!String.prototype.startsWith) {
-    String.prototype.startsWith = function(search, pos) {
-        return this.substr(!pos || pos < 0 ? 0 : +pos, search.length) === search;
-    };
 }
+
+// ===== INITIALIZE =====
+// Initialise la page courante. Appelée au chargement, puis par transitions.js
+// après chaque changement de page (le contenu est remplacé sans rechargement).
+function initPage() {
+    setupMenu();
+    setupImages();
+    initProjectsPage();
+    animateOnScroll();
+}
+window.initPage = initPage;
+
+document.addEventListener('DOMContentLoaded', initPage);

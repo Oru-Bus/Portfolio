@@ -1,10 +1,12 @@
 // ============================================
 // MAIN.JS - Point d'entrée principal du portfolio
+// (les transitions de page sont gérées par transitions.js)
 // ============================================
 
 // ===== NAVBAR SCROLL EFFECT =====
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
@@ -53,6 +55,7 @@ window.addEventListener('load', animateOnScroll);
 // Remarque : "date" sert uniquement au tri (certaines dates sont approximatives).
 // "period" (facultatif) remplace la date affichée sur la carte.
 // "page" vide = pas de page détail, donc pas de bouton "En savoir plus".
+// "image" vide = pas d'image : la carte ne réserve alors aucun espace pour une photo.
 const projectsData = [
     {
         id: 1,
@@ -177,11 +180,17 @@ function renderProjects(projects) {
             const projectCard = document.createElement('div');
             projectCard.className = 'card animate-fadeInUp';
             const dateLabel = project.period || formatDate(project.date);
+
+            // Pas d'image => aucun bloc image (donc pas de grand espace vide)
+            const imageBlock = project.image
+                ? `<img src="${project.image}" alt="${project.title}" class="card-img" loading="lazy">`
+                : '';
             const moreButton = project.page
                 ? `<a href="${project.page}" class="btn btn-outline mt-2" data-category="${project.category}">En savoir plus</a>`
                 : '';
+
             projectCard.innerHTML = `
-                <img src="${project.image || 'images/default-project.jpg'}" alt="${project.title}" class="card-img" loading="lazy">
+                ${imageBlock}
                 <div class="card-body">
                     <h3 class="card-title">${project.title}</h3>
                     <p class="card-text">${project.description}</p>
@@ -267,7 +276,6 @@ function initProjectsPage() {
             btn.dataset.category = category;
             btn.textContent = category === 'all' ? 'Tous' : category;
             btn.addEventListener('click', () => {
-                currentCategory = category;
                 filterProjects(category);
             });
             filterBar.appendChild(btn);
@@ -297,7 +305,6 @@ function initProjectsPage() {
     }
 
     // Initial render
-    let currentCategory = 'all';
     renderProjects(projectsData);
 }
 
@@ -333,100 +340,10 @@ document.addEventListener('DOMContentLoaded', () => {
             this.onerror = null;
             this.src = `https://placehold.co/600x400/2c3e50/ffffff?text=${encodeURIComponent(this.alt || 'Portfolio')}`;
         };
-        
+
         if (!img.loading) {
             img.loading = 'lazy';
         }
-    });
-});
-
-// ===== TRANSITIONS FLUIDES =====
-// Intercepter les clics sur les liens internes pour des transitions fluides
-document.addEventListener('DOMContentLoaded', () => {
-    const transitionDuration = 400;
-    
-    document.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            const targetHref = this.getAttribute('href');
-            
-            // Ignorer les ancres (#), liens externes ou cibles vides
-            if (!targetHref || targetHref.startsWith('#') || targetHref.startsWith('http') || targetHref.startsWith('mailto') || targetHref.startsWith('tel')) {
-                return;
-            }
-            
-            // Ignorer si le lien a un target
-            if (this.target === '_blank' || this.target === '_new') {
-                return;
-            }
-            
-            e.preventDefault();
-            
-            // Créer et afficher l'overlay de transition
-            const overlay = document.createElement('div');
-            overlay.id = 'transition-overlay';
-            overlay.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                z-index: 9999;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity ${transitionDuration}ms ease-in-out;
-            `;
-            
-            const loader = document.createElement('div');
-            loader.style.cssText = `
-                width: 50px;
-                height: 50px;
-                border: 4px solid rgba(255, 255, 255, 0.3);
-                border-top-color: white;
-                border-radius: 50%;
-                animation: spin 1s linear infinite;
-            `;
-            
-            overlay.appendChild(loader);
-            document.body.appendChild(overlay);
-            
-            // Ajouter le keyframe pour le spin
-            const style = document.createElement('style');
-            style.id = 'transition-spin-style';
-            style.textContent = `
-                @keyframes spin {
-                    to { transform: rotate(360deg); }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            // Activer l'overlay
-            setTimeout(() => {
-                overlay.style.opacity = '1';
-                overlay.style.pointerEvents = 'all';
-                
-                // Naviguer après la transition
-                setTimeout(() => {
-                    window.location.href = targetHref;
-                }, transitionDuration);
-            }, 50);
-        });
-    });
-});
-
-// Nettoyer les overlays existants au chargement
-window.addEventListener('load', () => {
-    const existingOverlays = document.querySelectorAll('#transition-overlay, #page-transition-overlay');
-    existingOverlays.forEach(overlay => {
-        overlay.remove();
-    });
-    
-    const existingStyles = document.querySelectorAll('#transition-spin-style');
-    existingStyles.forEach(style => {
-        style.remove();
     });
 });
 

@@ -78,8 +78,9 @@ a:hover {
     transition: var(--transition);
 }
 
+/* Au défilement, seul le padding change : le fond reste celui défini
+   par la page (ce qui garde le header sombre sur les pages cyber/électronique). */
 .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.98);
     padding: 0.5rem 0;
 }
 
@@ -266,8 +267,24 @@ a:hover {
     transition: transform 0.5s ease;
 }
 
+/* Logos : affichés en entier (jamais coupés), centrés sur fond blanc */
+.card-img[src*="logo"],
+.experience-img[src*="logo"] {
+    object-fit: contain;
+    object-position: center;
+    padding: 1rem;
+    background: #fff;
+}
+
 .card:hover .card-img, .experience-card:hover .experience-img {
     transform: scale(1.03); /* Zoom très subtil */
+}
+
+/* Carte sans image : elle prend la hauteur de son contenu au lieu
+   de s'étirer à la hauteur de ses voisines (pas de grand vide blanc). */
+.card:not(:has(.card-img)):not(:has(.experience-img)) {
+    align-self: start;
+    height: auto;
 }
 
 .card-body {
@@ -375,7 +392,6 @@ a:hover {
     font-size: 1.1rem;
 }
 
-/* ===== GRID LAYOUTS ===== */
 /* ===== GRID LAYOUTS ===== */
 .grid-2 {
     display: grid;
@@ -654,7 +670,7 @@ a:hover {
     .grid-3 {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .grid-4 {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -672,52 +688,52 @@ a:hover {
         padding: 1rem 2rem;
         box-shadow: var(--shadow);
     }
-    
+
     .nav-links.active {
         display: flex;
     }
-    
+
     .hamburger {
         display: flex;
     }
-    
+
     .hamburger.active span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
-    
+
     .hamburger.active span:nth-child(2) {
         opacity: 0;
     }
-    
+
     .hamburger.active span:nth-child(3) {
         transform: rotate(-45deg) translate(5px, -5px);
     }
-    
+
     .hero {
         padding: 6rem 0 3rem;
     }
-    
+
     .hero h1 {
         font-size: 2.2rem;
     }
-    
+
     .grid-2 {
         grid-template-columns: 1fr;
     }
-    
+
     .grid-3 {
         grid-template-columns: 1fr;
     }
-    
+
     .grid-4 {
         grid-template-columns: 1fr;
     }
-    
+
     .filter-bar {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .footer-content {
         flex-direction: column;
         text-align: center;
@@ -728,20 +744,20 @@ a:hover {
     .container {
         padding: 0 1rem;
     }
-    
+
     .hero h1 {
         font-size: 1.8rem;
     }
-    
+
     .hero .subtitle {
         font-size: 1.2rem;
     }
-    
+
     .btn {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
     }
-    
+
     .nav-container {
         padding: 1rem;
     }

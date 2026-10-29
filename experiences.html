@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mes expériences professionnelles - Découvrez mon parcours">
-    <title>Mes Expériences | Portfolio</title>
-    
+    <meta name="description" content="Les expériences de Mattéo Lachambre : stage au support informatique, gestion de crise cyber, engagements personnels">
+    <title>Mes Expériences | Mattéo Lachambre</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/transitions.css">
     <style>
@@ -23,58 +23,37 @@
         }
         .page-header h1 { font-size: 3rem; margin-bottom: 1rem; }
         .page-header p { font-size: 1.2rem; opacity: 0.9; }
-        .experience-card { position: relative; overflow: hidden; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; margin-bottom: 0; border: none !important; }
+        .experience-card { position: relative; overflow: hidden; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; margin-bottom: 2rem; border: none !important; }
         .experience-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); }
         .experience-img { width: 100%; height: 250px; object-fit: cover; }
-
-        /* Correctif "conteneurs doublés" :
-           global.css donne à .experience-content son propre fond blanc, ombre, arrondi et padding.
-           À l'intérieur d'une .card, cela créait une seconde boîte (et un trait) sous le bouton. */
-        .experience-card .experience-content {
-            background: transparent;
-            box-shadow: none;
-            border-radius: 0;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-        .experience-card .experience-gains { flex-grow: 1; margin-bottom: 1rem; }
-        .experience-card .view-more-btn { margin-top: auto; align-self: flex-start; }
-
-        .experience-overlay {
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem;
-        }
-        .experience-title { font-size: 1.5rem; color: white; margin-bottom: 0.5rem; }
-        .experience-company { color: rgba(255, 255, 255, 0.9); font-size: 1.1rem; margin-bottom: 0.5rem; }
-        .experience-date { color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; }
+        .experience-img.logo-img { object-fit: contain; padding: 2rem; background: white; }
+        .experience-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .experience-company { color: #555; font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .experience-date { color: #777; font-size: 0.9rem; }
         .experience-description { color: #666; margin-bottom: 1rem; line-height: 1.8; }
         .gains-title { color: var(--primary); font-weight: 600; margin-bottom: 0.5rem; }
         .gains-list { list-style: none; padding-left: 0; }
         .gains-list li { padding-left: 1.5rem; margin-bottom: 0.5rem; position: relative; color: #555; }
         .gains-list li::before { content: '►'; position: absolute; left: 0; color: var(--secondary); }
-        .timeline { position: relative; padding-left: 3rem; margin: 2rem 0; }
-        .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: var(--secondary); }
-        .timeline-item { position: relative; padding-left: 2rem; margin-bottom: 2rem; }
+        .view-more-btn { margin-top: 1rem; align-self: flex-start; }
+        .timeline { position: relative; padding-left: 1.5rem; margin: 2rem 0; }
+        .timeline::before { content: ''; position: absolute; left: 5px; top: 0; bottom: 0; width: 2px; background: var(--secondary); }
+        .timeline-item { position: relative; padding-left: 1.5rem; margin-bottom: 2rem; }
         .timeline-item::before {
-            content: ''; position: absolute; left: -25px; top: 5px; width: 15px; height: 15px;
+            content: ''; position: absolute; left: -20px; top: 5px; width: 15px; height: 15px;
             border-radius: 50%; background: var(--secondary); border: 3px solid white; box-shadow: 0 0 0 3px var(--secondary);
         }
         .timeline-date { font-weight: 600; color: var(--primary); margin-bottom: 0.5rem; }
-        .page-header h1 { font-size: 2.2rem; }
-        .page-header p { font-size: 1rem; }
-        .timeline { padding-left: 1.5rem; }
-        .timeline::before { left: 5px; }
-        .timeline-item::before { left: -20px; }
-        .timeline-item { padding-left: 1.5rem; }
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2.2rem; }
+            .page-header p { font-size: 1rem; }
+        }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">Mon Portfolio</div>
+            <div class="logo">Mattéo Lachambre</div>
             <ul class="nav-links">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="projects.html">Projets</a></li>
@@ -91,8 +70,8 @@
 
     <div class="page-header">
         <div class="container">
-            <h1>Mes Expériences Professionnelles</h1>
-            <p>Découvrez mon parcours et les compétences acquises au fil des années</p>
+            <h1>Mes Expériences</h1>
+            <p>Mon parcours professionnel et personnel, et ce qu'il m'a appris</p>
         </div>
     </div>
 
@@ -100,92 +79,99 @@
         <div class="section">
             <h2 class="section-title">Mon parcours</h2>
             <p class="section-subtitle">
-                Chaque expérience a contribué à forger mes compétences et ma vision du développement et de la technologie.
+                Chaque expérience m'a permis de développer de nouvelles compétences, techniques comme humaines.
             </p>
 
             <div class="grid-3">
-                <!-- Expérience 1 -->
+                <!-- Expérience 1 : Clarins -->
                 <div class="card experience-card animate-fadeInUp">
-                    <img src="images/experience-securetech.jpg" alt="SecureTech Solutions" class="experience-img">
+                    <img src="images/logo-clarins.png" alt="Laboratoires Clarins" class="experience-img logo-img">
                     <div class="experience-content">
-                        <h3 class="experience-title" style="color: var(--primary); font-size: 1.4rem;">Ingénieur Cybersécurité</h3>
-                        <p class="experience-company"><strong>SecureTech Solutions</strong></p>
-                        <p class="experience-date"><small>Juin 2022 - Mai 2024 (2 ans)</small></p>
+                        <h3 class="experience-title" style="color: var(--primary); font-size: 1.4rem;">Stage au support informatique</h3>
+                        <p class="experience-company"><strong>Laboratoires Clarins</strong></p>
+                        <p class="experience-date"><small>15 juin 2026 - 24 juillet 2026 (6 semaines)</small></p>
                         <p class="experience-description">
-                            Analyse des vulnérabilités, tests d'intrusion, formation des équipes aux bonnes pratiques de sécurité.
+                            Stage ouvrier au sein du support informatique : premiers pas en entreprise, avec des missions et des objectifs concrets.
                         </p>
                         <div class="experience-gains">
                             <p class="gains-title">Compétences acquises :</p>
                             <ul class="gains-list">
-                                <li>Expertise en pentest</li>
-                                <li>Gestion des incidents de sécurité</li>
-                                <li>Certification CEH</li>
+                                <li>Résolution de problèmes</li>
+                                <li>Écoute et compréhension des utilisateurs</li>
+                                <li>Acceptation du feedback</li>
                             </ul>
                         </div>
-                        <a href="experiences/experience-securetech.html" class="btn btn-outline view-more-btn">En savoir plus</a>
+                        <a href="experiences/clarins.html" class="btn btn-outline view-more-btn">En savoir plus</a>
                     </div>
                 </div>
 
-                <!-- Expérience 2 -->
+                <!-- Expérience 2 : Cyber Experience -->
                 <div class="card experience-card animate-fadeInUp delay-1">
-                    <img src="images/experience-techinnov.jpg" alt="TechInnov" class="experience-img">
+                    <img src="images/logo-campus-cyber.png" alt="Certificat Cyber Experience" class="experience-img">
                     <div class="experience-content">
-                        <h3 class="experience-title" style="color: var(--primary); font-size: 1.4rem;">Développeur Full Stack</h3>
-                        <p class="experience-company"><strong>TechInnov</strong></p>
-                        <p class="experience-date"><small>Janvier 2021 - Mai 2022 (1 an et 5 mois)</small></p>
+                        <h3 class="experience-title" style="color: var(--primary); font-size: 1.4rem;">Simulation de gestion de crise cyber</h3>
+                        <p class="experience-company"><strong>Cyber Experience - Campus Cyber, Paris La Défense</strong></p>
+                        <p class="experience-date"><small>Janvier 2025</small></p>
                         <p class="experience-description">
-                            Développement d'applications web complètes, de la conception à la mise en production.
+                            Simulation de crise en cellule de six personnes aux rôles définis, à l'issue de la compétition Hack Ton Lycée.
                         </p>
                         <div class="experience-gains">
                             <p class="gains-title">Compétences acquises :</p>
                             <ul class="gains-list">
-                                <li>Maîtrise de React et Node.js</li>
-                                <li>Gestion de projets Agile</li>
-                                <li>Déploiement cloud</li>
+                                <li>Gestion du stress</li>
+                                <li>Prise de décision en contexte critique</li>
+                                <li>Communication orale</li>
                             </ul>
                         </div>
-                        <a href="experiences/experience-techinnov.html" class="btn btn-outline view-more-btn">En savoir plus</a>
+                        <a href="experiences/cyber-experience.html" class="btn btn-outline view-more-btn">En savoir plus</a>
                     </div>
                 </div>
 
-                <!-- Expérience 3 -->
+                <!-- Expérience 3 : Engagements personnels -->
                 <div class="card experience-card animate-fadeInUp delay-2">
-                    <img src="images/experience-electrosystems.jpg" alt="ElectroSystems" class="experience-img">
                     <div class="experience-content">
-                        <h3 class="experience-title" style="color: var(--primary); font-size: 1.4rem;">Stagiaire en Électronique</h3>
-                        <p class="experience-company"><strong>ElectroSystems</strong></p>
-                        <p class="experience-date"><small>Juillet 2020 - Décembre 2020 (6 mois)</small></p>
-                        <p class="experience-description">
-                            Conception et développement de systèmes embarqués pour applications industrielles.
-                        </p>
-                        <div class="experience-gains">
-                            <p class="gains-title">Compétences acquises :</p>
+                        <h3 class="experience-title" style="color: var(--primary); font-size: 1.4rem;">Engagements personnels</h3>
+                        <p class="experience-company"><strong>Sport, théâtre, secourisme, bénévolat</strong></p>
+                        <p class="experience-date"><small>2022 - 2026</small></p>
+                        <div class="experience-gains" style="margin-top: 1rem;">
                             <ul class="gains-list">
-                                <li>Programmation ESP32/Arduino</li>
-                                <li>Conception de circuits</li>
-                                <li>Prototypage rapide</li>
+                                <li>Bénévolat</li>
+                                <li>Membre du Bureau Des Sports de l'EPITA</li>
+                                <li>Théâtre (2024 - 2025)</li>
+                                <li>Formation aux gestes de premiers secours, PSC1 (2024)</li>
+                                <li>Stage d'observation au Département du Val-d'Oise (2022)</li>
+                                <li>Championnat de France de triathlon UNSS (2022)</li>
                             </ul>
                         </div>
-                        <a href="experiences/experience-electrosystems.html" class="btn btn-outline view-more-btn">En savoir plus</a>
                     </div>
                 </div>
             </div>
 
             <div class="timeline animate-fadeInUp delay-3">
                 <div class="timeline-item">
-                    <div class="timeline-date">2022 - 2024</div>
-                    <h3>Ingénieur Cybersécurité - SecureTech Solutions</h3>
-                    <p>Analyse des vulnérabilités, tests d'intrusion, formation des équipes aux bonnes pratiques de sécurité.</p>
+                    <div class="timeline-date">Juin - juillet 2026</div>
+                    <h3>Stage au support informatique - Laboratoires Clarins</h3>
+                    <p>Six semaines au sein d'un service informatique du secteur industriel.</p>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-date">2021 - 2022</div>
-                    <h3>Développeur Full Stack - TechInnov</h3>
-                    <p>Développement d'applications web complètes, de la conception à la mise en production.</p>
+                    <div class="timeline-date">Depuis 2026</div>
+                    <h3>Association EPISPORT - EPITA</h3>
+                    <p>Membre du Bureau Des Sports de l'EPITA.</p>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-date">2020</div>
-                    <h3>Stagiaire en Électronique - ElectroSystems</h3>
-                    <p>Conception et développement de systèmes embarqués pour applications industrielles.</p>
+                    <div class="timeline-date">Depuis 2025</div>
+                    <h3>Cycle préparatoire ingénieur en informatique - EPITA</h3>
+                    <p>Formation à Villejuif, avec une spécialisation prévue en cybersécurité.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Janvier 2025</div>
+                    <h3>Cyber Experience - Campus Cyber</h3>
+                    <p>Simulation de gestion de crise cyber à Paris La Défense.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Octobre 2024</div>
+                    <h3>Hack Ton Lycée</h3>
+                    <p>Concours régional de cybersécurité (CTF et Bug Bounty).</p>
                 </div>
             </div>
         </div>
@@ -194,7 +180,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="logo">Mon Portfolio</div>
+                <div class="logo">Mattéo Lachambre</div>
                 <div class="footer-links">
                     <a href="index.html">Accueil</a>
                     <a href="projects.html">Projets</a>
@@ -203,7 +189,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Mon Portfolio. Tous droits réservés.</p>
+                <p>&copy; 2026 Mattéo Lachambre. Tous droits réservés.</p>
             </div>
         </div>
     </footer>

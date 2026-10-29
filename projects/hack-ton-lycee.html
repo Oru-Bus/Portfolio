@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hack Ton Lycée | Mattéo Lachambre</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/transitions.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #00d4ff;
+            --accent: #ff0055;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --glow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: var(--darker);
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 10% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(ellipse at 90% 80%, rgba(255, 0, 85, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .navbar { background: rgba(10, 10, 10, 0.95); border-bottom: 1px solid rgba(0, 255, 136, 0.3); }
+        .nav-links a { color: #e0e0e0; }
+        .nav-links a:hover { color: var(--primary); }
+        .logo { color: var(--primary); font-family: 'Orbitron', sans-serif; text-shadow: var(--glow); }
+        .hamburger span { background: var(--primary); }
+        .project-info { background: rgba(15, 15, 15, 0.9); border: 1px solid rgba(0, 255, 136, 0.2); position: relative; }
+        .project-info::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--primary), var(--secondary)); border-radius: 0 4px 4px 0; }
+        .meta-row { display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .meta-row .meta-item { color: #aaa; font-size: 0.9rem; }
+        .meta-row .meta-item i { color: var(--primary); }
+        .h3-cyber { color: var(--primary); font-family: 'Orbitron', sans-serif; margin: 1.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(0, 255, 136, 0.2); font-size: 1.3rem; }
+        .tag { background: rgba(0, 255, 136, 0.1); border: 1px solid var(--primary); color: var(--primary); }
+        .tag:hover { background: var(--primary); color: var(--darker); box-shadow: var(--glow); }
+        .gallery-cyber { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        .gallery-cyber figure { border: 1px solid rgba(0, 255, 136, 0.2); border-radius: 8px; overflow: hidden; background: #111; }
+        .gallery-cyber img { width: 100%; display: block; }
+        .gallery-cyber figcaption { padding: 0.8rem 1rem; color: #aaa; font-size: 0.85rem; }
+        .footer { background: var(--darker); border-top: 1px solid rgba(0, 255, 136, 0.2); }
+        .social-icon { background: rgba(0, 255, 136, 0.1); border: 1px solid var(--primary); }
+        .social-icon i { color: var(--primary); }
+        .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: transparent; border: 1px solid var(--primary); color: var(--primary); border-radius: 5px; text-decoration: none; font-family: 'Share Tech Mono', monospace; }
+        .back-btn:hover { background: var(--primary); color: var(--darker); box-shadow: var(--glow); }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><i class="fas fa-shield-alt"></i> HACK TON LYCÉE</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../projects.html">Projets</a></li>
+                <li><a href="../experiences.html">Expériences</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="page-header" style="padding: 7rem 0 3rem; text-align: center;">
+        <div class="container">
+            <h1 style="font-family: 'Orbitron'; color: var(--primary); text-shadow: var(--glow);"><i class="fas fa-trophy"></i> HACK TON LYCÉE</h1>
+            <p style="color: var(--secondary); font-size: 1.2rem;">Concours régional de cybersécurité - CTF et Bug Bounty</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="project-detail">
+            <div class="project-info">
+                <div class="meta-row">
+                    <div class="meta-item"><i class="fas fa-calendar-alt"></i> <strong>Date :</strong> Octobre 2024</div>
+                    <div class="meta-item"><i class="fas fa-folder"></i> <strong>Catégorie :</strong> Cybersécurité</div>
+                    <div class="meta-item"><i class="fas fa-map-marker-alt"></i> <strong>Région :</strong> Île-de-France</div>
+                    <div class="meta-item"><i class="fas fa-medal"></i> <strong>Classement :</strong> 12<sup>e</sup></div>
+                </div>
+
+                <div style="line-height: 2; color: #ccc;">
+                    <h3 class="h3-cyber"><i class="fas fa-info-circle"></i> PRÉSENTATION</h3>
+                    <p><strong>Hack Ton Lycée</strong> est un concours de cybersécurité organisé en Île-de-France entre étudiant·es, avec une épreuve de <strong>CTF</strong> (Capture The Flag) et un <strong>Bug Bounty</strong> pédagogique réalisé de façon éthique.</p>
+                    <p>Premier jalon de mon parcours en cybersécurité, cette compétition m'a permis de me former sur le terrain, à travers des épreuves pratiques et des mises en situation réalistes.</p>
+
+                    <h3 class="h3-cyber"><i class="fas fa-bug"></i> BUG BOUNTY</h3>
+                    <p>Dans le cadre de la campagne de sécurisation de la place des services Monlycée.net, j'ai terminé <strong>n°16 au classement du Bug Bounty pédagogique</strong> (édition 2024) avec <strong>plusieurs failles de sécurité rapportées</strong>. Un certificat d'aptitude à sécuriser un environnement numérique m'a été remis par la Région Île-de-France, la Région académique Île-de-France et la société Yogosha.</p>
+
+                    <h3 class="h3-cyber"><i class="fas fa-tools"></i> OUTILS UTILISÉS</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li><strong>Système :</strong> BlackArch, Linux</li>
+                        <li><strong>Web :</strong> OWASP ZAP, XSS, JavaScript</li>
+                        <li><strong>Réseau :</strong> Nmap</li>
+                        <li><strong>Autres :</strong> outil de brute force, outil d'OSINT, outil de reverse engineering</li>
+                        <li><strong>Développement :</strong> Python, VSCode</li>
+                    </ul>
+
+                    <h3 class="h3-cyber"><i class="fas fa-forward"></i> ET ENSUITE ?</h3>
+                    <p>À l'issue de la compétition, les lauréat·es ont participé à une simulation de gestion de crise au Campus Cyber de Paris La Défense. <a href="../experiences/cyber-experience.html" style="color: var(--secondary);">Découvrir cette expérience</a>.</p>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <p style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; font-family: 'Orbitron';"><i class="fas fa-tags"></i> ÉTIQUETTES</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                        <span class="tag">CTF</span><span class="tag">Bug Bounty</span><span class="tag">Cybersécurité</span><span class="tag">Linux</span>
+                        <span class="tag">BlackArch</span><span class="tag">OWASP ZAP</span><span class="tag">Nmap</span><span class="tag">OSINT</span>
+                        <span class="tag">XSS</span><span class="tag">Python</span><span class="tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div style="margin: 2rem 0; text-align: center;">
+                <a href="../projects.html" class="back-btn"><i class="fas fa-arrow-left"></i> RETOUR AUX PROJETS</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo" style="color: var(--primary);"><i class="fas fa-shield-alt"></i> MATTÉO LACHAMBRE</div>
+                <div class="footer-links">
+                    <a href="../index.html">Accueil</a>
+                    <a href="../projects.html">Projets</a>
+                    <a href="../experiences.html">Expériences</a>
+                    <a href="../index.html#contact">Contact</a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://github.com/Oru-Bus" target="_blank" rel="noopener" class="social-icon"><i class="fab fa-github" style="font-size: 1.2rem;"></i></a>
+                </div>
+            </div>
+            <div class="copyright"><p>&copy; 2026 Mattéo Lachambre. Tous droits réservés.</p></div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+    <script src="../js/transitions.js"></script>
+</body>
+</html>

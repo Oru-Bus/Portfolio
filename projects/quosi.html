@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUOSI | Mattéo Lachambre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/transitions.css">
+    <style>
+        :root {
+            --primary: #2c5aa0;
+            --secondary: #4a90e2;
+            --accent: #e67e22;
+        }
+        body { font-family: 'Roboto', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%); }
+        .page-header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 6rem 0 4rem; text-align: center; margin-bottom: 3rem; }
+        .page-header h1 { font-family: 'Montserrat'; font-size: 2.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .project-info { background: white; border-radius: 10px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .meta-row { display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; color: #666; font-size: 0.9rem; }
+        .meta-row i { color: var(--secondary); }
+        .logo-quosi { display: block; max-width: 280px; margin: 0 auto 2rem; }
+        .h3-blue { color: var(--primary); font-family: 'Montserrat'; margin: 1.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #eee; font-size: 1.3rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+        .feature-card { background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--secondary); transition: all 0.3s ease; }
+        .feature-card:hover { transform: translateX(5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .feature-title { font-family: 'Montserrat'; color: var(--primary); margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .feature-card p { color: #666; font-size: 0.95rem; margin: 0; }
+        .tag { background: #f8f9fa; border: 1px solid var(--secondary); color: var(--primary); padding: 0.4rem 1rem; border-radius: 20px; }
+        .tag:hover { background: var(--secondary); color: white; transform: translateY(-2px); }
+        .footer { background: var(--dark); color: white; }
+        .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: var(--secondary); color: white; border: none; border-radius: 5px; text-decoration: none; font-family: 'Montserrat'; font-weight: 500; transition: all 0.3s ease; }
+        .back-btn:hover { background: var(--primary); color: white; transform: translateX(-3px); box-shadow: 0 5px 15px rgba(44,90,160,0.3); }
+        .social-icon { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .social-icon i { color: #ccc; }
+        .social-icon:hover i { color: white; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" style="color: var(--primary);"><i class="fas fa-briefcase"></i> QUOSI</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../projects.html">Projets</a></li>
+                <li><a href="../experiences.html">Expériences</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-chart-line"></i> QUOSI</h1>
+            <p class="subtitle">Simplifier. Gérer. Entreprendre.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="project-detail">
+            <div class="project-info">
+                <img src="../images/logo-quosi-full.png" alt="Logo QUOSI" class="logo-quosi">
+
+                <div class="meta-row">
+                    <div><i class="fas fa-calendar-alt"></i> <strong>Date :</strong> 2026</div>
+                    <div><i class="fas fa-folder"></i> <strong>Catégorie :</strong> Développement et entrepreneuriat</div>
+                    <div><i class="fas fa-bullseye"></i> <strong>Public :</strong> entrepreneur·es individuel·les</div>
+                </div>
+
+                <div style="line-height: 1.8; color: #444;">
+                    <h3 class="h3-blue"><i class="fas fa-info-circle"></i> PRÉSENTATION DU PROJET</h3>
+                    <p><strong>QUOSI</strong> est une application de gestion destinée aux entrepreneur·es individuel·les.</p>
+                    <p>Je l'ai créée pour répondre au besoin d'un indépendant qui cherchait à centraliser sa gestion administrative sans s'éparpiller entre plusieurs applications. Ce projet d'application et d'entreprise m'a permis de monter en compétences techniques tout en me confrontant aux réalités du terrain, notamment sur les aspects légaux et la gestion d'un projet de A à Z.</p>
+
+                    <h3 class="h3-blue"><i class="fas fa-brain"></i> COMPÉTENCES ACQUISES</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <h4 class="feature-title"><i class="fas fa-compass"></i> Vision stratégique</h4>
+                            <p>La création d'QUOSI a nécessité une vision globale du projet. Je sais maintenant délimiter un projet, voir ses limites, trouver des solutions et avoir une vision à long terme.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title"><i class="fas fa-calendar-check"></i> Gestion du temps</h4>
+                            <p>Créer une application de bureautique impose de suivre un calendrier précis : dates de déploiement, de communication, de retours utilisateurs, mais aussi échéances juridiques.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4 class="feature-title"><i class="fas fa-random"></i> Prise de décision</h4>
+                            <p>Les retours utilisateurs, les nouvelles lois ou la découverte d'un bug peuvent me pousser à revoir mes priorités. J'ai appris à juger et à réorganiser mes tâches de façon efficace, autonome et rapide, même sous pression.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <p style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; font-family: 'Montserrat';"><i class="fas fa-tags"></i> ÉTIQUETTES</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                        <span class="tag">Application de gestion</span><span class="tag">Entrepreneuriat</span><span class="tag">Gestion de projet</span><span class="tag">Aspects légaux</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 2rem 0; text-align: center;">
+                <a href="../projects.html" class="back-btn"><i class="fas fa-arrow-left"></i> RETOUR AUX PROJETS</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo" style="color: white;"><i class="fas fa-briefcase"></i> MATTÉO LACHAMBRE</div>
+                <div class="footer-links">
+                    <a href="../index.html">Accueil</a>
+                    <a href="../projects.html">Projets</a>
+                    <a href="../experiences.html">Expériences</a>
+                    <a href="../index.html#contact">Contact</a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://github.com/Oru-Bus" target="_blank" rel="noopener" class="social-icon"><i class="fab fa-github" style="font-size: 1.2rem;"></i></a>
+                </div>
+            </div>
+            <div class="copyright"><p>&copy; 2026 Mattéo Lachambre. Tous droits réservés.</p></div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+    <script src="../js/transitions.js"></script>
+</body>
+</html>

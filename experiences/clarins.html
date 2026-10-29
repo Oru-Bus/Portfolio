@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratoires Clarins | Mattéo Lachambre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/transitions.css">
+    <style>
+        :root {
+            --primary: #2c5aa0;
+            --secondary: #4a90e2;
+            --accent: #e67e22;
+        }
+        body { font-family: 'Roboto', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%); }
+        .page-header { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 6rem 0 4rem; text-align: center; margin-bottom: 3rem; }
+        .page-header h1 { font-family: 'Montserrat'; font-size: 2.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .experience-info { background: white; border-radius: 10px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .meta-row { display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; color: #666; font-size: 0.9rem; }
+        .meta-row i { color: var(--secondary); font-size: 1.1rem; }
+        .logo-clarins { display: block; max-width: 320px; margin: 0 auto 2rem; }
+        .section-title { color: var(--primary); font-family: 'Montserrat'; padding-bottom: 0.5rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--secondary); text-align: left; }
+        .section-title::after { display: none; }
+        .gain-card { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.5rem; transition: all 0.3s ease; }
+        .gain-card:hover { transform: translateY(-3px); border-color: var(--secondary); box-shadow: 0 5px 15px rgba(74, 144, 226, 0.2); }
+        .gain-icon { width: 50px; height: 50px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+        .gain-icon i { color: white; font-size: 1.5rem; }
+        .gain-title { font-family: 'Montserrat'; color: var(--primary); margin-bottom: 0.5rem; font-size: 1.2rem; }
+        .gain-card p { color: #666; font-size: 0.95rem; }
+        .footer { background: var(--dark); color: white; }
+        .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: var(--secondary); color: white; border: none; border-radius: 5px; text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 500; }
+        .back-btn:hover { background: var(--primary); color: white; transform: translateX(-3px); box-shadow: 0 5px 15px rgba(44, 90, 160, 0.3); }
+        .social-icon { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .social-icon i { color: #ccc; }
+        .social-icon:hover i { color: white; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo" style="color: var(--primary);"><i class="fas fa-headset"></i> CLARINS</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../projects.html">Projets</a></li>
+                <li><a href="../experiences.html">Expériences</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-laptop-code"></i> STAGE AU SUPPORT INFORMATIQUE</h1>
+            <p class="subtitle">Laboratoires Clarins - Été 2026</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="experience-detail">
+            <div class="experience-info">
+                <img src="../images/logo-clarins.png" alt="Laboratoires Clarins" class="logo-clarins">
+
+                <div class="meta-row">
+                    <div><i class="fas fa-calendar-alt"></i> <strong>Période :</strong> 15 juin 2026 - 24 juillet 2026</div>
+                    <div><i class="fas fa-clock"></i> <strong>Durée :</strong> 6 semaines</div>
+                    <div><i class="fas fa-briefcase"></i> <strong>Poste :</strong> Stage ouvrier, support informatique</div>
+                </div>
+
+                <div style="line-height: 1.8; color: #444; margin-bottom: 2rem;">
+                    <p>J'ai effectué un stage ouvrier de six semaines au sein du <strong>support informatique des Laboratoires Clarins</strong>.</p>
+                    <p>Ce stage m'a permis d'effectuer mes premiers pas dans le monde professionnel en tant que membre actif d'une équipe, à travers des missions et des objectifs concrets. Il a enrichi ma curiosité professionnelle en me dévoilant les coulisses et les enjeux informatiques du secteur industriel.</p>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h3 class="section-title"><i class="fas fa-trophy"></i> COMPÉTENCES &amp; ACQUIS</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div class="gain-card">
+                            <div class="gain-icon"><i class="fas fa-lightbulb"></i></div>
+                            <h4 class="gain-title">Résolution de problèmes</h4>
+                            <p>Au contact des employé·es, j'ai développé une capacité d'écoute et de compréhension de leurs difficultés. Mes résolutions passent par la délimitation du problème, sa reproduction, une méthode d'élimination, puis le déploiement de solutions rapides et durables.</p>
+                        </div>
+                        <div class="gain-card">
+                            <div class="gain-icon"><i class="fas fa-comment-dots"></i></div>
+                            <h4 class="gain-title">Acceptation du feedback</h4>
+                            <p>Débutant en support informatique à mon arrivée, j'ai rapidement développé les compétences pour devenir autonome. Grâce aux retours constructifs de mon équipe, j'ai appris à accueillir la critique avec objectivité pour ajuster mes méthodes de travail.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 2rem 0; text-align: center;">
+                <a href="../experiences.html" class="back-btn"><i class="fas fa-arrow-left"></i> RETOUR AUX EXPÉRIENCES</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo" style="color: white;"><i class="fas fa-headset"></i> MATTÉO LACHAMBRE</div>
+                <div class="footer-links">
+                    <a href="../index.html">Accueil</a>
+                    <a href="../projects.html">Projets</a>
+                    <a href="../experiences.html">Expériences</a>
+                    <a href="../index.html#contact">Contact</a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://github.com/Oru-Bus" target="_blank" rel="noopener" class="social-icon"><i class="fab fa-github" style="font-size: 1.2rem;"></i></a>
+                </div>
+            </div>
+            <div class="copyright"><p>&copy; 2026 Mattéo Lachambre. Tous droits réservés.</p></div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+    <script src="../js/transitions.js"></script>
+</body>
+</html>

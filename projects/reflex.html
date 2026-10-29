@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflex | Mattéo Lachambre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/transitions.css">
+    <style>
+        :root {
+            --primary: #00b8d4;
+            --secondary: #009688;
+            --accent: #ff9800;
+            --dark: #121212;
+            --darker: #0a0a0a;
+        }
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background: var(--darker);
+            color: #e0e0e0;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 20% 80%, rgba(0, 184, 212, 0.1) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(0, 150, 136, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .navbar { background: rgba(18, 18, 18, 0.95); border-bottom: 1px solid rgba(0, 184, 212, 0.3); }
+        .nav-links a { color: #e0e0e0; }
+        .nav-links a:hover { color: var(--primary); }
+        .logo { color: var(--primary); font-family: 'Rajdhani', sans-serif; font-weight: 700; text-shadow: 0 0 10px rgba(0, 184, 212, 0.5); }
+        .hamburger span { background: var(--primary); }
+        .project-info { background: rgba(22, 22, 22, 0.9); border: 1px solid rgba(0, 184, 212, 0.2); position: relative; }
+        .project-info::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--primary), var(--secondary)); border-radius: 0 4px 4px 0; }
+        .meta-row { display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; color: #aaa; font-size: 0.9rem; }
+        .meta-row i { color: var(--primary); }
+        .h3-electro { color: var(--primary); font-family: 'Rajdhani', sans-serif; margin: 1.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(0, 184, 212, 0.2); font-size: 1.5rem; }
+        .components-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+        .component-card { background: rgba(30, 30, 30, 0.8); border: 1px solid rgba(0, 184, 212, 0.2); border-radius: 8px; padding: 1.5rem; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .component-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent)); }
+        .component-card:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: 0 5px 15px rgba(0, 184, 212, 0.2); }
+        .component-icon { width: 50px; height: 50px; background: rgba(0, 184, 212, 0.1); border: 1px solid var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 1.5rem; color: var(--primary); }
+        .component-title { font-family: 'Rajdhani', sans-serif; color: var(--primary); margin-bottom: 0.5rem; font-size: 1.3rem; }
+        .component-card p { color: #aaa; font-size: 0.85rem; margin: 0; }
+        .steps { counter-reset: step; list-style: none; padding-left: 0; }
+        .steps li { counter-increment: step; position: relative; padding: 0.8rem 1rem 0.8rem 3.5rem; margin-bottom: 0.8rem; background: rgba(30, 30, 30, 0.8); border-left: 3px solid var(--primary); border-radius: 0 5px 5px 0; }
+        .steps li::before { content: counter(step); position: absolute; left: 1rem; top: 0.7rem; width: 1.8rem; height: 1.8rem; border-radius: 50%; border: 1px solid var(--primary); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; }
+        .tag { background: rgba(0, 184, 212, 0.1); border: 1px solid var(--primary); color: var(--primary); }
+        .tag:hover { background: var(--primary); color: var(--darker); box-shadow: 0 0 10px rgba(0, 184, 212, 0.5); }
+        .footer { background: var(--darker); border-top: 1px solid rgba(0, 184, 212, 0.2); }
+        .social-icon { background: rgba(0, 184, 212, 0.1); border: 1px solid var(--primary); }
+        .social-icon i { color: var(--primary); }
+        .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: transparent; border: 1px solid var(--primary); color: var(--primary); border-radius: 5px; text-decoration: none; font-family: 'Rajdhani', sans-serif; font-weight: 500; transition: all 0.3s ease; margin: 0 0.5rem 0.5rem; }
+        .back-btn:hover { background: var(--primary); color: var(--darker); box-shadow: 0 0 15px rgba(0, 184, 212, 0.5); }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><i class="fas fa-microchip"></i> REFLEX</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../projects.html">Projets</a></li>
+                <li><a href="../experiences.html">Expériences</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="page-header" style="text-align: center; margin-bottom: 3rem; padding: 7rem 0 3rem;">
+        <div class="container">
+            <h1 style="font-family: 'Rajdhani'; font-size: 2.5rem; color: var(--primary); text-shadow: 0 0 20px rgba(0, 184, 212, 0.5);"><i class="fas fa-bolt"></i> REFLEX</h1>
+            <p style="color: var(--secondary); font-size: 1.2rem;">Mesurer son temps de réaction : un projet informatique et électronique</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="project-detail">
+            <div class="project-info">
+                <div class="meta-row">
+                    <div><i class="fas fa-folder"></i> <strong>Catégorie :</strong> Informatique et électronique</div>
+                    <div><i class="fas fa-microchip"></i> <strong>Matériel :</strong> ESP32, LED, boutons poussoirs</div>
+                </div>
+
+                <div style="line-height: 2; color: #ccc;">
+                    <h3 class="h3-electro"><i class="fas fa-info-circle"></i> PRÉSENTATION DU PROJET</h3>
+                    <p><strong>Reflex</strong> est un projet mêlant informatique et électronique. Un <strong>ESP32</strong> contrôle plusieurs LED et boutons poussoirs, et une application de bureau simple permet de s'y connecter pour mesurer son temps de réaction.</p>
+
+                    <h3 class="h3-electro"><i class="fas fa-cube"></i> LES DEUX PARTIES DU PROJET</h3>
+                    <div class="components-grid">
+                        <div class="component-card">
+                            <div class="component-icon"><i class="fas fa-microchip"></i></div>
+                            <h4 class="component-title">Partie électronique</h4>
+                            <p>Un ESP32 pilote plusieurs LED et lit plusieurs boutons poussoirs, chaque LED étant associée à son propre bouton.</p>
+                        </div>
+                        <div class="component-card">
+                            <div class="component-icon"><i class="fas fa-desktop"></i></div>
+                            <h4 class="component-title">Application de bureau</h4>
+                            <p>Une application simple se connecte à l'ESP32, lance les sessions et affiche les résultats.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="h3-electro"><i class="fas fa-play-circle"></i> DÉROULEMENT D'UNE SESSION</h3>
+                    <ol class="steps">
+                        <li>Depuis l'application, on se connecte à l'ESP32.</li>
+                        <li>Un clic sur le bouton de lancement démarre une session d'une minute.</li>
+                        <li>Une LED au hasard s'allume : il faut l'éteindre avec le bouton poussoir qui lui est lié.</li>
+                        <li>Une autre LED s'allume, et ainsi de suite jusqu'à la fin de la minute.</li>
+                        <li>L'application affiche le temps de réaction moyen et un graphique, et permet de comparer avec les sessions précédentes.</li>
+                    </ol>
+
+                    <h3 class="h3-electro"><i class="fas fa-brain"></i> COMPÉTENCES MISES EN ŒUVRE</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li><strong>Programmation embarquée</strong> sur ESP32</li>
+                        <li><strong>Électronique</strong> : câblage de LED et de boutons poussoirs</li>
+                        <li><strong>Communication</strong> entre un microcontrôleur et une application de bureau</li>
+                        <li><strong>Visualisation de données</strong> : temps moyen, graphique et historique des sessions</li>
+                    </ul>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <p style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; font-family: 'Rajdhani';"><i class="fas fa-tags"></i> ÉTIQUETTES</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                        <span class="tag">ESP32</span><span class="tag">Électronique</span><span class="tag">Informatique</span><span class="tag">LED</span>
+                        <span class="tag">Application de bureau</span><span class="tag">Temps de réaction</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 2rem 0; text-align: center;">
+                <a href="../projects.html" class="back-btn"><i class="fas fa-arrow-left"></i> RETOUR AUX PROJETS</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo" style="color: var(--primary);"><i class="fas fa-microchip"></i> MATTÉO LACHAMBRE</div>
+                <div class="footer-links">
+                    <a href="../index.html">Accueil</a>
+                    <a href="../projects.html">Projets</a>
+                    <a href="../experiences.html">Expériences</a>
+                    <a href="../index.html#contact">Contact</a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://github.com/Oru-Bus" target="_blank" rel="noopener" class="social-icon"><i class="fab fa-github" style="font-size: 1.2rem;"></i></a>
+                </div>
+            </div>
+            <div class="copyright"><p>&copy; 2026 Mattéo Lachambre. Tous droits réservés.</p></div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+    <script src="../js/transitions.js"></script>
+</body>
+</html>

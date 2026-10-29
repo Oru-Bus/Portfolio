@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio personnel - Découvrez mes projets, expériences et compétences">
-    <title>Mon Portfolio | Accueil</title>
-    
+    <meta name="description" content="Portfolio de Mattéo Lachambre, étudiant en cycle préparatoire ingénieur en informatique à l'EPITA, à la recherche d'une alternance en cybersécurité.">
+    <title>Mattéo Lachambre | Portfolio</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/transitions.css">
     <style>
@@ -29,11 +29,13 @@
         }
         .hero .subtitle { color: rgba(255, 255, 255, 0.9); }
         .hero .description { color: rgba(255, 255, 255, 0.85); }
+        .hero .profile-img { object-position: center 20%; }
+        .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
         .section { background: white; }
         .section:nth-child(even) { background: #f8f9fa; }
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             text-align: center;
             margin: 3rem 0;
@@ -48,7 +50,12 @@
         .stat-item:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); }
         .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem; }
         .stat-label { color: #666; font-size: 1rem; }
-        
+        .info-list { list-style: none; padding-left: 0; }
+        .info-list li { margin-bottom: 0.7rem; padding-left: 1.5rem; position: relative; }
+        .info-list li::before { content: '►'; position: absolute; left: 0; color: var(--secondary); }
+        .contact-info { list-style: none; padding-left: 0; margin: 1.5rem 0 2rem; }
+        .contact-info li { margin-bottom: 0.6rem; }
+
         /* Boutons avec texte toujours lisible */
         .btn {
             min-width: 200px;
@@ -57,7 +64,9 @@
         .btn:hover {
             color: white !important;
         }
-        
+        .hero .btn-outline { color: white; border-color: white; }
+        .hero .btn-outline:hover { background: white; color: #764ba2 !important; }
+
         @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 480px) { .stats-grid { grid-template-columns: 1fr; } }
     </style>
@@ -65,7 +74,7 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">Mon Portfolio</div>
+            <div class="logo">Mattéo Lachambre</div>
             <ul class="nav-links">
                 <li><a href="#home">Accueil</a></li>
                 <li><a href="#about">À propos</a></li>
@@ -84,14 +93,17 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content animate-fadeInUp">
-                <img src="images/profile.jpg" alt="Ma photo" class="profile-img">
-                <h1>Jean Dupont</h1>
-                <p class="subtitle">Ingénieur & Développeur Full Stack</p>
+                <img src="images/profile.jpg" alt="Portrait de Mattéo Lachambre" class="profile-img">
+                <h1>Mattéo Lachambre</h1>
+                <p class="subtitle">Étudiant en cycle préparatoire ingénieur en informatique - EPITA</p>
                 <p class="description">
-                    Passionné par la technologie et l'innovation, je crée des solutions digitales
-                    qui allient performance, sécurité et design moderne.
+                    Passionné d'informatique, je me spécialise en cybersécurité
+                    et je recherche une alternance de trois ans dans ce domaine.
                 </p>
-                <a href="#contact" class="btn btn-outline">Me contacter</a>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-outline">Voir mes projets</a>
+                    <a href="#contact" class="btn btn-outline">Me contacter</a>
+                </div>
             </div>
         </div>
     </section>
@@ -103,55 +115,74 @@
                 <div class="animate-fadeInUp delay-1">
                     <h3>Ma passion</h3>
                     <p>
-                        Depuis toujours, je suis fasciné par la manière dont la technologie peut
-                        résoudre des problèmes complexes et améliorer notre quotidien.
-                        Mon parcours m'a permis d'acquérir des compétences variées en
-                        développement, cybersécurité et gestion de projets.
+                        Passionné par l'informatique depuis toujours, je cherche constamment à me
+                        renseigner sur les nouvelles technologies, à les explorer, les tester et
+                        les comprendre.
                     </p>
                     <p>
-                        Je crois en l'apprentissage continu et je m'efforce de rester à jour
-                        avec les dernières technologies et tendances du secteur.
+                        Il est pour moi indispensable de rester connecté au monde qui m'entoure et
+                        d'avoir connaissance de son fonctionnement : sans cela, l'évolution
+                        personnelle, professionnelle et sociétale ne peut être optimale.
                     </p>
                 </div>
                 <div class="animate-fadeInUp delay-2">
-                    <h3>Mes valeurs</h3>
-                    <ul style="list-style: none; padding-left: 0;">
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--secondary);">►</span>
-                            Qualité et excellence technique
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--secondary);">►</span>
-                            Collaboration et travail d'équipe
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--secondary);">►</span>
-                            Innovation et créativité
-                        </li>
-                        <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--secondary);">►</span>
-                            Intégrité et éthique professionnelle
-                        </li>
+                    <h3>Ce que je cherche</h3>
+                    <p>
+                        Actuellement en seconde année de cycle préparatoire ingénieur en informatique
+                        à l'EPITA, je prévois de me spécialiser en cybersécurité.
+                    </p>
+                    <p>
+                        Je suis à la recherche d'une alternance de trois ans (septembre 2027 - juin 2030) dans ce même domaine.
+                        Cette opportunité me permettra de découvrir les réalités du terrain et
+                        d'acquérir une expérience professionnelle.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid-2" style="margin-top: 2rem;">
+                <div class="animate-fadeInUp delay-1">
+                    <h3>Formation</h3>
+                    <ul class="info-list">
+                        <li><strong>EPITA</strong>, école d'ingénieurs en informatique (Villejuif) - cycle préparatoire, 2025 - aujourd'hui</li>
+                        <li><strong>Baccalauréat général</strong> (2025) - Lycée Alfred Kastler, Cergy : spécialités Mathématiques et NSI, option Mathématiques expertes</li>
+                        <li><strong>MOOC SecNumacadémie</strong> (2024)</li>
+                        <li><strong>PSC1</strong> (2024)</li>
                     </ul>
+                </div>
+                <div class="animate-fadeInUp delay-2">
+                    <h3>Compétences</h3>
+                    <div class="card-tags">
+                        <span class="tag">Python (maîtrisé)</span>
+                        <span class="tag">C (maîtrisé)</span>
+                        <span class="tag">Web (notions)</span>
+                        <span class="tag">ESP32</span>
+                        <span class="tag">Blender (maîtrisé)</span>
+                        <span class="tag">Montage vidéo (maîtrisé)</span>
+                        <span class="tag">Aisance orale</span>
+                    </div>
+                    <h3 style="margin-top: 1.5rem;">Centres d'intérêt</h3>
+                    <div class="card-tags">
+                        <span class="tag">Course à pied</span>
+                        <span class="tag">Informatique</span>
+                        <span class="tag">Électronique</span>
+                        <span class="tag">Théâtre</span>
+                        <span class="tag">Astronomie</span>
+                    </div>
                 </div>
             </div>
 
             <div class="stats-grid animate-fadeInUp delay-3">
                 <div class="stat-item">
-                    <div class="stat-number">6+</div>
-                    <div class="stat-label">Projets réalisés</div>
+                    <div class="stat-number">16<sup>e</sup></div>
+                    <div class="stat-label">Hack Ton Lycée (2024)</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">3+</div>
-                    <div class="stat-label">Années d'expérience</div>
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Semaines de stage au support informatique des Laboratoires Clarins</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Technologies maîtrisées</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">5</div>
-                    <div class="stat-label">Certifications</div>
+                    <div class="stat-number">3 ans</div>
+                    <div class="stat-label">d'alternance en cybersécurité recherchée</div>
                 </div>
             </div>
         </div>
@@ -159,56 +190,55 @@
 
     <section id="projects" class="section">
         <div class="container">
-            <h2 class="section-title">Mes derniers projets</h2>
+            <h2 class="section-title">Mes projets</h2>
             <p class="section-subtitle">
-                Voici une sélection de mes projets récents qui illustrent mes compétences
-                et ma passion pour la création de solutions innovantes.
+                Une sélection de projets en cybersécurité, développement et électronique.
             </p>
-            
+
             <div class="grid-3">
                 <div class="card animate-fadeInUp">
-                    <img src="images/project-ctf.jpg" alt="CTF Security Challenge" class="card-img">
+                    <img src="images/logo-hack-ton-lycee.png" alt="Certificat Hack Ton Lycée" class="card-img">
                     <div class="card-body">
-                        <h3 class="card-title">CTF Security Challenge</h3>
-                        <p class="card-text">Participation à un concours de cybersécurité avec résolution de défis variés en cryptographie, web et réseau.</p>
+                        <h3 class="card-title">Hack Ton Lycée</h3>
+                        <p class="card-text">Concours régional de cybersécurité (CTF et Bug Bounty) entre lycéen·nes et étudiant·es d'Île-de-France, en octobre 2024.</p>
                         <div class="card-tags">
                             <span class="tag">CTF</span>
+                            <span class="tag">Bug Bounty</span>
                             <span class="tag">Cybersécurité</span>
-                            <span class="tag">Python</span>
                         </div>
-                        <a href="projects/ctf-challenge.html" class="btn btn-outline mt-2">En savoir plus</a>
+                        <a href="projects/hack-ton-lycee.html" class="btn btn-outline mt-2">En savoir plus</a>
                     </div>
                 </div>
-                
+
                 <div class="card animate-fadeInUp delay-1">
-                    <img src="images/project-gestionpro.jpg" alt="GestionPro" class="card-img">
+                    <img src="images/logo-quosi-full.png" alt="Logo QUOSI" class="card-img" style="object-fit: contain; padding: 1rem;">
                     <div class="card-body">
-                        <h3 class="card-title">GestionPro</h3>
-                        <p class="card-text">Application bureautique complète pour la gestion des clients et la facturation pour les PME.</p>
+                        <h3 class="card-title">QUOSI</h3>
+                        <p class="card-text">Application de gestion destinée aux entrepreneur·es individuel·les, pour centraliser leur gestion administrative au même endroit.</p>
                         <div class="card-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">MongoDB</span>
+                            <span class="tag">Application</span>
+                            <span class="tag">Entrepreneuriat</span>
+                            <span class="tag">Gestion de projet</span>
                         </div>
-                        <a href="projects/gestionpro.html" class="btn btn-outline mt-2">En savoir plus</a>
+                        <a href="projects/quosi.html" class="btn btn-outline mt-2">En savoir plus</a>
                     </div>
                 </div>
-                
+
                 <div class="card animate-fadeInUp delay-2">
-                    <img src="images/project-esp32.jpg" alt="ESP32 Home Automation" class="card-img">
+                    <img src="images/esp32.png" alt="Projet Reflex" class="card-img">
                     <div class="card-body">
-                        <h3 class="card-title">ESP32 Home Automation</h3>
-                        <p class="card-text">Système domotique intelligent basé sur ESP32 avec contrôle à distance via application mobile.</p>
+                        <h3 class="card-title">Reflex</h3>
+                        <p class="card-text">Un ESP32, des LED et des boutons poussoirs pour mesurer son temps de réaction, avec une application de bureau pour suivre ses sessions.</p>
                         <div class="card-tags">
                             <span class="tag">ESP32</span>
-                            <span class="tag">IoT</span>
-                            <span class="tag">Arduino</span>
+                            <span class="tag">Électronique</span>
+                            <span class="tag">Informatique</span>
                         </div>
-                        <a href="projects/esp32-automation.html" class="btn btn-outline mt-2">En savoir plus</a>
+                        <a href="projects/reflex.html" class="btn btn-outline mt-2">En savoir plus</a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="text-center mt-3">
                 <a href="projects.html" class="btn" style="color: white;">Voir tous les projets</a>
             </div>
@@ -219,45 +249,47 @@
         <div class="container">
             <h2 class="section-title">Mes expériences</h2>
             <p class="section-subtitle">
-                Mon parcours professionnel m'a permis d'acquérir une expérience variée
-                dans différents domaines de la technologie.
+                Mes premiers pas dans le monde professionnel et en situation de crise cyber.
             </p>
-            
+
             <div class="grid-3">
                 <div class="card animate-fadeInUp">
-                    <img src="images/experience-securetech.jpg" alt="SecureTech Solutions" class="card-img">
+                    <img src="images/logo-clarins.png" alt="Laboratoires Clarins" class="card-img" style="object-fit: contain; padding: 1.5rem;">
                     <div class="card-body">
-                        <h3 class="card-title">Ingénieur Cybersécurité</h3>
-                        <p class="card-text"><strong>SecureTech Solutions</strong></p>
-                        <p class="card-text">Analyse des vulnérabilités, tests d'intrusion et formation des équipes aux bonnes pratiques.</p>
-                        <p class="card-text"><small>2022 - 2024</small></p>
-                        <a href="experiences/experience-securetech.html" class="btn btn-outline mt-2">En savoir plus</a>
+                        <h3 class="card-title">Stage au support informatique</h3>
+                        <p class="card-text"><strong>Laboratoires Clarins</strong></p>
+                        <p class="card-text">Stage ouvrier de six semaines au sein du support informatique d'un acteur du secteur industriel.</p>
+                        <p class="card-text"><small>15 juin - 24 juillet 2026</small></p>
+                        <a href="experiences/clarins.html" class="btn btn-outline mt-2">En savoir plus</a>
                     </div>
                 </div>
-                
+
                 <div class="card animate-fadeInUp delay-1">
-                    <img src="images/experience-techinnov.jpg" alt="TechInnov" class="card-img">
+                    <img src="images/logo-campus-cyber.png" alt="Certificat Cyber Experience" class="card-img">
                     <div class="card-body">
-                        <h3 class="card-title">Développeur Full Stack</h3>
-                        <p class="card-text"><strong>TechInnov</strong></p>
-                        <p class="card-text">Développement d'applications web complètes, de la conception à la mise en production.</p>
-                        <p class="card-text"><small>2021 - 2022</small></p>
-                        <a href="experiences/experience-techinnov.html" class="btn btn-outline mt-2">En savoir plus</a>
+                        <h3 class="card-title">Simulation de gestion de crise cyber</h3>
+                        <p class="card-text"><strong>Cyber Experience - Campus Cyber, Paris La Défense</strong></p>
+                        <p class="card-text">Exercice de crise en cellule de six personnes, réservé aux lauréat·es de Hack Ton Lycée.</p>
+                        <p class="card-text"><small>Janvier 2025</small></p>
+                        <a href="experiences/cyber-experience.html" class="btn btn-outline mt-2">En savoir plus</a>
                     </div>
                 </div>
-                
+
                 <div class="card animate-fadeInUp delay-2">
-                    <img src="images/experience-electrosystems.jpg" alt="ElectroSystems" class="card-img">
                     <div class="card-body">
-                        <h3 class="card-title">Stagiaire en Électronique</h3>
-                        <p class="card-text"><strong>ElectroSystems</strong></p>
-                        <p class="card-text">Conception et développement de systèmes embarqués pour applications industrielles.</p>
-                        <p class="card-text"><small>2020</small></p>
-                        <a href="experiences/experience-electrosystems.html" class="btn btn-outline mt-2">En savoir plus</a>
+                        <h3 class="card-title">Engagements personnels</h3>
+                        <p class="card-text"><strong>Sport, théâtre, secourisme, bénévolat</strong></p>
+                        <ul class="info-list card-text">
+                            <li>Bénévolat</li>
+                            <li>Membre du Bureau Des Sports de l'EPITA</li>
+                            <li>Théâtre (2024 - 2025)</li>
+                            <li>Formation aux gestes de premiers secours, PSC1 (2024)</li>
+                            <li>Championnat de France de triathlon UNSS (2022)</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            
+
             <div class="text-center mt-3">
                 <a href="experiences.html" class="btn" style="color: white;">Voir toutes les expériences</a>
             </div>
@@ -268,12 +300,16 @@
         <div class="container">
             <h2 class="section-title">Me contacter</h2>
             <p class="section-subtitle">
-                Vous avez un projet ou une question ? N'hésitez pas à me contacter !
+                Une alternance, un projet, une question ? N'hésitez pas à m'écrire !
             </p>
-            
+
             <div style="max-width: 700px; margin: 0 auto;" class="animate-fadeInUp">
+                <ul class="contact-info">
+                    <li><strong>GitHub :</strong> <a href="https://github.com/Oru-Bus" target="_blank" rel="noopener">github.com/Oru-Bus</a></li>
+                    <li><strong>Localisation :</strong> Villejuif, France</li>
+                </ul>
                 <h3>Envoyez-moi un message</h3>
-                <form id="contact-form" class="mt-2">
+                <form id="contact-form" class="mt-2" action="https://formspree.io/f/mppplqgl" method="POST">
                     <div class="form-group">
                         <label for="name">Nom</label>
                         <input type="text" id="name" name="name" class="form-control" placeholder="Votre nom" required>
@@ -299,7 +335,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="logo">Mon Portfolio</div>
+                <div class="logo">Mattéo Lachambre</div>
                 <div class="footer-links">
                     <a href="#home">Accueil</a>
                     <a href="#about">À propos</a>
@@ -309,7 +345,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 Mon Portfolio. Tous droits réservés.</p>
+                <p>&copy; 2026 Mattéo Lachambre. Tous droits réservés.</p>
             </div>
         </div>
     </footer>

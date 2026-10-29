@@ -1,12 +1,10 @@
 // ============================================
 // MAIN.JS - Point d'entrée principal du portfolio
-// (les transitions de page sont gérées uniquement par transitions.js)
 // ============================================
 
 // ===== NAVBAR SCROLL EFFECT =====
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
@@ -15,25 +13,22 @@ window.addEventListener('scroll', function() {
 });
 
 // ===== MOBILE MENU TOGGLE =====
-// (rappelé à chaque changement de page par initPage, car le contenu est remplacé sans rechargement)
-function setupMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
 
-    if (hamburger && navLinks) {
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
+if (hamburger && navLinks) {
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
 
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
         });
-    }
+    });
 }
 
 // ===== SCROLL ANIMATIONS =====
@@ -55,78 +50,115 @@ window.addEventListener('scroll', animateOnScroll);
 window.addEventListener('load', animateOnScroll);
 
 // ===== PROJECT FILTERING & SORTING =====
+// Remarque : "date" sert uniquement au tri (certaines dates sont approximatives).
+// "period" (facultatif) remplace la date affichée sur la carte.
+// "page" vide = pas de page détail, donc pas de bouton "En savoir plus".
 const projectsData = [
     {
         id: 1,
-        title: 'CTF Security Challenge',
-        description: 'Participation à un concours de cybersécurité avec résolution de défis variés',
-        date: '2024-03-15',
-        category: 'Cybersécurité',
-        tags: ['CTF', 'Pentest', 'Python', 'Cryptographie', 'Réseau'],
-        image: 'images/project-ctf.jpg',
-        page: 'projects/ctf-challenge.html'
+        title: 'QUOSI',
+        description: 'Application de gestion destinée aux entrepreneur·es individuel·les, pour centraliser leur gestion administrative.',
+        date: '2026-01-01',
+        period: '2026',
+        category: 'Développement',
+        tags: ['Application', 'Entrepreneuriat', 'Gestion de projet'],
+        image: 'images/logo-quosi.png',
+        page: 'projects/quosi.html'
     },
     {
         id: 2,
-        title: 'GestionPro - Application Bureautique',
-        description: 'Création d\'une application de gestion pour PME avec suivi client et facturation',
-        date: '2023-11-20',
-        category: 'Développement',
-        tags: ['JavaScript', 'React', 'Node.js', 'MongoDB', 'Bootstrap'],
-        image: 'images/project-gestionpro.jpg',
-        page: 'projects/gestionpro.html'
+        title: 'Reflex',
+        description: 'Un ESP32, des LED et des boutons poussoirs pour mesurer son temps de réaction, avec une application de bureau pour suivre ses sessions.',
+        date: '2025-06-01',
+        period: 'Projet personnel',
+        category: 'Électronique',
+        tags: ['ESP32', 'Électronique', 'Informatique', 'Application de bureau'],
+        image: 'images/esp32.png',
+        page: 'projects/reflex.html'
     },
     {
         id: 3,
-        title: 'ESP32 Home Automation',
-        description: 'Système domotique complet basé sur ESP32 avec contrôle à distance',
-        date: '2023-07-10',
-        category: 'Électronique',
-        tags: ['ESP32', 'Arduino', 'IoT', 'MQTT', 'C++', 'WiFi'],
-        image: 'images/project-esp32.jpg',
-        page: 'projects/esp32-automation.html'
+        title: 'Hack Ton Lycée',
+        description: 'Concours régional de cybersécurité (CTF et Bug Bounty) entre étudiant·es d\'Île-de-France.',
+        date: '2024-10-15',
+        period: 'Octobre 2024',
+        category: 'Cybersécurité',
+        tags: ['CTF', 'Bug Bounty', 'OWASP ZAP', 'Nmap', 'Python'],
+        image: 'images/logo-hack-ton-lycee.png',
+        page: 'projects/hack-ton-lycee.html'
+    },
+    {
+        id: 10,
+        title: 'Modélisation 3D',
+        description: 'Projets de modélisation 3D réalisés avec Blender.',
+        date: '2023-06-01',
+        period: 'Projet personnel',
+        category: 'Création 3D',
+        tags: ['Blender', '3D'],
+        image: 'images/3D.png',
+        page: ''
     },
     {
         id: 4,
-        title: 'Bug Bounty Platform',
-        description: 'Plateforme de signalement de vulnérabilités pour entreprises',
-        date: '2024-01-05',
-        category: 'Cybersécurité',
-        tags: ['Security', 'Web', 'API', 'Vulnerability', 'Python', 'Flask'],
-        image: 'images/project-bugbounty.jpg',
-        page: '#'
+        title: 'Cockpit maison',
+        description: 'Cockpit réalisé pour Microsoft Flight Simulator 2020, à base d\'ESP32 et de l\'API SimConnect.',
+        date: '2024-01-01',
+        period: 'Projet personnel',
+        category: 'Électronique',
+        tags: ['ESP32', 'Électronique', 'JS'],
+        page: ''
     },
     {
         id: 5,
-        title: 'Portfolio Website',
-        description: 'Création de mon site portfolio personnel avec design moderne',
-        date: '2024-05-01',
-        category: 'Web Design',
-        tags: ['HTML', 'CSS', 'JavaScript', 'Responsive', 'Design'],
-        image: 'images/project-portfolio.jpg',
-        page: '#'
+        title: 'Détecteur de mouvements',
+        description: 'Détecteur de mouvements réalisé avec un ESP32.',
+        date: '2024-01-02',
+        period: 'Projet personnel',
+        category: 'Électronique',
+        tags: ['ESP32', 'Électronique'],
+        page: ''
     },
     {
         id: 6,
-        title: 'Startup Entrepreneurship',
-        description: 'Lancement d\'une startup dans le domaine de la tech avec une équipe de 5 personnes',
-        date: '2023-01-15',
-        category: 'Entrepreneuriat',
-        tags: ['Startup', 'Business', 'Management', 'Stratégie', 'Innovation'],
-        image: 'images/project-startup.jpg',
-        page: '#'
+        title: 'Applications cross-platform',
+        description: 'Création d\'applications multiplateformes pour mobile et ordinateur.',
+        date: '2025-03-01',
+        period: 'Projet personnel',
+        category: 'Développement',
+        tags: ['Expo', 'React Native', 'Android Studio', 'Electron'],
+        page: ''
+    },
+    {
+        id: 7,
+        title: 'Reconnaissance faciale',
+        description: 'Programme de reconnaissance faciale en Python.',
+        date: '2024-06-01',
+        period: 'Projet personnel',
+        category: 'Développement',
+        tags: ['Python', 'OpenCV', 'NumPy'],
+        page: ''
+    },
+    {
+        id: 8,
+        title: 'Matchmaking',
+        description: 'Projet de matchmaking développé en Python.',
+        date: '2024-05-01',
+        period: 'Projet personnel',
+        category: 'Développement',
+        tags: ['Python', 'Socket', 'Pickle', 'Threading'],
+        page: ''
+    },
+    {
+        id: 9,
+        title: 'Extension Visual Studio Code',
+        description: 'Développement d\'une extension pour l\'éditeur Visual Studio Code.',
+        date: '2025-01-01',
+        period: 'Projet personnel',
+        category: 'Développement',
+        tags: ['Visual Studio Code', 'Extension'],
+        page: ''
     }
 ];
-
-// Thème de transition associé à chaque catégorie (lu par transitions.js via data-theme)
-const CATEGORY_THEMES = {
-    'Cybersécurité': 'cyber',
-    'Électronique': 'electronic',
-    'Développement': 'dev'
-};
-
-// État courant de la page projets (catégorie + tri)
-const projectsState = { category: 'all', sort: 'date-desc' };
 
 // ===== RENDER PROJECTS =====
 function renderProjects(projects) {
@@ -142,21 +174,23 @@ function renderProjects(projects) {
         projectsContainer.innerHTML = '';
 
         projects.forEach(project => {
-            const theme = CATEGORY_THEMES[project.category];
-            const themeAttr = theme ? ` data-theme="${theme}"` : '';
             const projectCard = document.createElement('div');
             projectCard.className = 'card animate-fadeInUp';
+            const dateLabel = project.period || formatDate(project.date);
+            const moreButton = project.page
+                ? `<a href="${project.page}" class="btn btn-outline mt-2" data-category="${project.category}">En savoir plus</a>`
+                : '';
             projectCard.innerHTML = `
                 <img src="${project.image || 'images/default-project.jpg'}" alt="${project.title}" class="card-img" loading="lazy">
                 <div class="card-body">
                     <h3 class="card-title">${project.title}</h3>
                     <p class="card-text">${project.description}</p>
                     <p class="card-text"><small>Catégorie: ${project.category}</small></p>
-                    <p class="card-text"><small>Date: ${formatDate(project.date)}</small></p>
+                    <p class="card-text"><small>${dateLabel}</small></p>
                     <div class="card-tags">
                         ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                     </div>
-                    <a href="${project.page}" class="btn btn-outline mt-2" data-category="${project.category}"${themeAttr}>En savoir plus</a>
+                    ${moreButton}
                 </div>
             `;
             projectsContainer.appendChild(projectCard);
@@ -168,45 +202,46 @@ function renderProjects(projects) {
     }, 400);
 }
 
-// ===== FILTER + SORT =====
-function getVisibleProjects() {
-    let list = projectsState.category === 'all'
-        ? [...projectsData]
-        : projectsData.filter(project => project.category === projectsState.category);
-
-    switch (projectsState.sort) {
-        case 'date-desc':
-            list.sort((a, b) => new Date(b.date) - new Date(a.date));
-            break;
-        case 'date-asc':
-            list.sort((a, b) => new Date(a.date) - new Date(b.date));
-            break;
-        case 'name-asc':
-            list.sort((a, b) => a.title.localeCompare(b.title));
-            break;
-        case 'name-desc':
-            list.sort((a, b) => b.title.localeCompare(a.title));
-            break;
-        case 'category':
-            list.sort((a, b) => a.category.localeCompare(b.category));
-            break;
-    }
-    return list;
-}
-
+// ===== FILTER BY CATEGORY =====
 function filterProjects(category) {
-    projectsState.category = category;
-    renderProjects(getVisibleProjects());
+    const filteredProjects = category === 'all'
+        ? projectsData
+        : projectsData.filter(project => project.category === category);
+
+    renderProjects(filteredProjects);
 
     // Update active button
     document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.category === category);
+        btn.classList.remove('active');
+        if (btn.dataset.category === category) {
+            btn.classList.add('active');
+        }
     });
 }
 
+// ===== SORT PROJECTS =====
 function sortProjects(sortBy) {
-    projectsState.sort = sortBy;
-    renderProjects(getVisibleProjects());
+    let sortedProjects = [...projectsData];
+
+    switch(sortBy) {
+        case 'date-desc':
+            sortedProjects.sort((a, b) => new Date(b.date) - new Date(a.date));
+            break;
+        case 'date-asc':
+            sortedProjects.sort((a, b) => new Date(a.date) - new Date(b.date));
+            break;
+        case 'name-asc':
+            sortedProjects.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        case 'name-desc':
+            sortedProjects.sort((a, b) => b.title.localeCompare(a.title));
+            break;
+        case 'category':
+            sortedProjects.sort((a, b) => a.category.localeCompare(b.category));
+            break;
+    }
+
+    renderProjects(sortedProjects);
 }
 
 // ===== FORMAT DATE =====
@@ -223,9 +258,6 @@ function initProjectsPage() {
 
     if (!projectsContainer) return;
 
-    projectsState.category = 'all';
-    projectsState.sort = 'date-desc';
-
     // Create filter buttons
     if (filterBar) {
         const categories = ['all', ...new Set(projectsData.map(p => p.category))];
@@ -234,7 +266,10 @@ function initProjectsPage() {
             btn.className = `filter-btn ${category === 'all' ? 'active' : ''}`;
             btn.dataset.category = category;
             btn.textContent = category === 'all' ? 'Tous' : category;
-            btn.addEventListener('click', () => filterProjects(category));
+            btn.addEventListener('click', () => {
+                currentCategory = category;
+                filterProjects(category);
+            });
             filterBar.appendChild(btn);
         });
     }
@@ -256,11 +291,14 @@ function initProjectsPage() {
             sortSelect.appendChild(opt);
         });
 
-        sortSelect.addEventListener('change', () => sortProjects(sortSelect.value));
+        sortSelect.addEventListener('change', () => {
+            sortProjects(sortSelect.value);
+        });
     }
 
-    // Initial render (tri par date décroissante, comme affiché dans le select)
-    renderProjects(getVisibleProjects());
+    // Initial render
+    let currentCategory = 'all';
+    renderProjects(projectsData);
 }
 
 // ===== BACK TO TOP BUTTON =====
@@ -282,25 +320,119 @@ function scrollToTop() {
     });
 }
 
+// ===== INITIALIZE =====
+document.addEventListener('DOMContentLoaded', function() {
+    initProjectsPage();
+});
+
 // ===== GESTION DES IMAGES =====
-function setupImages() {
-    document.querySelectorAll('img').forEach(img => {
+document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
         img.onerror = function() {
             this.onerror = null;
             this.src = `https://placehold.co/600x400/2c3e50/ffffff?text=${encodeURIComponent(this.alt || 'Portfolio')}`;
         };
+        
+        if (!img.loading) {
+            img.loading = 'lazy';
+        }
     });
-}
+});
 
-// ===== INITIALIZE =====
-// Initialise la page courante. Appelée au chargement, puis par transitions.js
-// après chaque changement de page (le contenu est remplacé sans rechargement).
-function initPage() {
-    setupMenu();
-    setupImages();
-    initProjectsPage();
-    animateOnScroll();
-}
-window.initPage = initPage;
+// ===== TRANSITIONS FLUIDES =====
+// Intercepter les clics sur les liens internes pour des transitions fluides
+document.addEventListener('DOMContentLoaded', () => {
+    const transitionDuration = 400;
+    
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const targetHref = this.getAttribute('href');
+            
+            // Ignorer les ancres (#), liens externes ou cibles vides
+            if (!targetHref || targetHref.startsWith('#') || targetHref.startsWith('http') || targetHref.startsWith('mailto') || targetHref.startsWith('tel')) {
+                return;
+            }
+            
+            // Ignorer si le lien a un target
+            if (this.target === '_blank' || this.target === '_new') {
+                return;
+            }
+            
+            e.preventDefault();
+            
+            // Créer et afficher l'overlay de transition
+            const overlay = document.createElement('div');
+            overlay.id = 'transition-overlay';
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity ${transitionDuration}ms ease-in-out;
+            `;
+            
+            const loader = document.createElement('div');
+            loader.style.cssText = `
+                width: 50px;
+                height: 50px;
+                border: 4px solid rgba(255, 255, 255, 0.3);
+                border-top-color: white;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            `;
+            
+            overlay.appendChild(loader);
+            document.body.appendChild(overlay);
+            
+            // Ajouter le keyframe pour le spin
+            const style = document.createElement('style');
+            style.id = 'transition-spin-style';
+            style.textContent = `
+                @keyframes spin {
+                    to { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Activer l'overlay
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+                overlay.style.pointerEvents = 'all';
+                
+                // Naviguer après la transition
+                setTimeout(() => {
+                    window.location.href = targetHref;
+                }, transitionDuration);
+            }, 50);
+        });
+    });
+});
 
-document.addEventListener('DOMContentLoaded', initPage);
+// Nettoyer les overlays existants au chargement
+window.addEventListener('load', () => {
+    const existingOverlays = document.querySelectorAll('#transition-overlay, #page-transition-overlay');
+    existingOverlays.forEach(overlay => {
+        overlay.remove();
+    });
+    
+    const existingStyles = document.querySelectorAll('#transition-spin-style');
+    existingStyles.forEach(style => {
+        style.remove();
+    });
+});
+
+// Polyfill pour les anciennes versions
+if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function(search, pos) {
+        return this.substr(!pos || pos < 0 ? 0 : +pos, search.length) === search;
+    };
+}

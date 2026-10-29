@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Experience | Mattéo Lachambre</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/transitions.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #00d4ff;
+            --accent: #ff0055;
+            --dark: #0a0a0a;
+            --darker: #050505;
+            --glow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: var(--darker);
+            color: #e0e0e0;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 10% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(ellipse at 90% 80%, rgba(255, 0, 85, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .navbar { background: rgba(10, 10, 10, 0.95); border-bottom: 1px solid rgba(0, 255, 136, 0.3); }
+        .nav-links a { color: #e0e0e0; }
+        .nav-links a:hover { color: var(--primary); }
+        .logo { color: var(--primary); font-family: 'Orbitron', sans-serif; text-shadow: var(--glow); }
+        .hamburger span { background: var(--primary); }
+        .experience-info { background: rgba(15, 15, 15, 0.9); border: 1px solid rgba(0, 255, 136, 0.2); position: relative; }
+        .meta-row { display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; color: #aaa; font-size: 0.9rem; }
+        .meta-row i { color: var(--primary); }
+        .section-title { color: var(--primary); font-family: 'Orbitron', sans-serif; text-shadow: var(--glow); border-bottom: 1px solid rgba(0, 255, 136, 0.3); text-align: left; }
+        .section-title::after { display: none; }
+        .gain-card { background: rgba(20, 20, 20, 0.8); border: 1px solid rgba(0, 255, 136, 0.2); border-radius: 8px; padding: 1.5rem; transition: all 0.3s ease; }
+        .gain-card:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: var(--glow); }
+        .gain-icon { width: 50px; height: 50px; background: rgba(0, 255, 136, 0.1); border: 1px solid var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 1.5rem; color: var(--primary); }
+        .gain-title { font-family: 'Orbitron', sans-serif; color: var(--primary); margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .gain-card p { color: #aaa; font-size: 0.9rem; }
+        .gallery-cyber { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        .gallery-cyber figure { border: 1px solid rgba(0, 255, 136, 0.2); border-radius: 8px; overflow: hidden; background: #111; }
+        .gallery-cyber img { width: 100%; display: block; }
+        .gallery-cyber figcaption { padding: 0.8rem 1rem; color: #aaa; font-size: 0.85rem; }
+        .footer { background: var(--darker); border-top: 1px solid rgba(0, 255, 136, 0.2); }
+        .social-icon { background: rgba(0, 255, 136, 0.1); border: 1px solid var(--primary); }
+        .social-icon i { color: var(--primary); }
+        .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: transparent; border: 1px solid var(--primary); color: var(--primary); border-radius: 5px; text-decoration: none; font-family: 'Share Tech Mono', monospace; }
+        .back-btn:hover { background: var(--primary); color: var(--darker); box-shadow: var(--glow); }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><i class="fas fa-shield-alt"></i> CYBER EXPERIENCE</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="../projects.html">Projets</a></li>
+                <li><a href="../experiences.html">Expériences</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <div class="page-header" style="text-align: center; margin-bottom: 3rem; padding: 7rem 0 3rem;">
+        <div class="container">
+            <h1 style="font-family: 'Orbitron'; color: var(--primary); text-shadow: var(--glow); font-size: 2.2rem;"><i class="fas fa-user-secret"></i> SIMULATION DE GESTION DE CRISE CYBER</h1>
+            <p style="color: var(--secondary); font-size: 1.2rem;">Cyber Experience - Campus Cyber, Paris La Défense - Janvier 2025</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="experience-detail">
+            <div class="experience-info">
+                <div class="meta-row">
+                    <div><i class="fas fa-calendar-alt"></i> <strong>Date :</strong> Janvier 2025</div>
+                    <div><i class="fas fa-map-marker-alt"></i> <strong>Lieu :</strong> Campus Cyber, Paris La Défense</div>
+                    <div><i class="fas fa-users"></i> <strong>Format :</strong> cellule de 6 personnes</div>
+                </div>
+
+                <div style="line-height: 2; color: #ccc; margin-bottom: 2rem;">
+                    <p>À l'issue de la compétition <a href="../projects/hack-ton-lycee.html" style="color: var(--secondary);">Hack Ton Lycée</a>, les lauréat·es, dont j'ai fait partie, ont participé à une <strong>simulation de gestion de crise</strong> au Campus Cyber de Paris La Défense, au sein de la <strong>Cyber Experience</strong>.</p>
+                    <p>Cette mise en situation m'a confronté à la réalité des situations d'urgence : gestion d'un flux massif d'alertes à filtrer et prioriser, travail d'équipe, et prise en compte des pressions internes et externes (médiatiques, politiques et sociétales).</p>
+                    <p>Nous étions organisés en cellules de six personnes aux rôles définis. J'ai dû effectuer de fréquents points de situation oraux, clairs et concis, pour orienter les prises de décision de l'équipe.</p>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <h3 class="section-title"><i class="fas fa-trophy"></i> COMPÉTENCES &amp; ACQUIS</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div class="gain-card">
+                            <div class="gain-icon"><i class="fas fa-heartbeat"></i></div>
+                            <h4 class="gain-title">Gestion du stress</h4>
+                            <p>Travail sous pression face à un flux massif d'alertes à filtrer et à prioriser.</p>
+                        </div>
+                        <div class="gain-card">
+                            <div class="gain-icon"><i class="fas fa-balance-scale"></i></div>
+                            <h4 class="gain-title">Prise de décision</h4>
+                            <p>Renforcement de mes capacités décisionnelles en contexte critique.</p>
+                        </div>
+                        <div class="gain-card">
+                            <div class="gain-icon"><i class="fas fa-comments"></i></div>
+                            <h4 class="gain-title">Communication orale</h4>
+                            <p>Écoute active et précision du vocabulaire pour des points de situation clairs et concis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 2rem 0; text-align: center;">
+                <a href="../experiences.html" class="back-btn"><i class="fas fa-arrow-left"></i> RETOUR AUX EXPÉRIENCES</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo" style="color: var(--primary);"><i class="fas fa-shield-alt"></i> MATTÉO LACHAMBRE</div>
+                <div class="footer-links">
+                    <a href="../index.html">Accueil</a>
+                    <a href="../projects.html">Projets</a>
+                    <a href="../experiences.html">Expériences</a>
+                    <a href="../index.html#contact">Contact</a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://github.com/Oru-Bus" target="_blank" rel="noopener" class="social-icon"><i class="fab fa-github" style="font-size: 1.2rem;"></i></a>
+                </div>
+            </div>
+            <div class="copyright"><p>&copy; 2026 Mattéo Lachambre. Tous droits réservés.</p></div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+    <script src="../js/transitions.js"></script>
+</body>
+</html>
